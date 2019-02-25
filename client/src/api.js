@@ -1,8 +1,11 @@
 import axios from 'axios'
 
+// https://ironhack.herokuapp.com/
+// baseURL: https://ironhack.herokuapp.com/api
+
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api',
-  withCredentials: true
+  withCredentials: true, // The cookie with session informations are sent
 })
 
 const errHandler = err => {
@@ -59,9 +62,30 @@ export default {
       .catch(errHandler)
   },
 
+  getCountryDetail(id) {
+    return service
+      .get('/countries/'+id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
   postCountries(data) {
     return service
       .post('/countries', data)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  deleteCountry(countryId) {
+    return service
+      .delete('/countries/'+countryId)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  editCountry(countryId, body) {
+    return service
+      .put('/countries/'+countryId, body)
       .then(res => res.data)
       .catch(errHandler)
   },

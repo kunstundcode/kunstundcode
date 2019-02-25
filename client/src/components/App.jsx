@@ -6,6 +6,8 @@ import AddCountry from './pages/AddCountry';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import CountryDetail from './pages/CountryDetail';
+import EditCountry from './pages/EditCountry';
 import api from '../api';
 import logo from '../logo.svg';
 
@@ -30,19 +32,24 @@ class App extends Component {
           <h1 className="App-title">MERN Boilerplate</h1>
           <NavLink to="/" exact>Home</NavLink>
           <NavLink to="/countries">Countries</NavLink>
-          <NavLink to="/add-country">Add country</NavLink>
+
+          {/* The NavLink "Add country" is displayed only when the user is connected */}
+          {api.isLoggedIn() && <NavLink to="/add-country">Add country</NavLink>}
+
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
           <NavLink to="/secret">Secret</NavLink>
         </header>
         <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/countries" component={Countries} />
-          <Route path="/add-country" component={AddCountry} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/secret" component={Secret} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/countries" component={Countries} />
+          <Route exact path="/countries/:countryId" component={CountryDetail} />
+          <Route exact path="/edit-country/:countryId" component={EditCountry} />
+          <Route exact path="/add-country" component={AddCountry} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/secret" component={Secret} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>
