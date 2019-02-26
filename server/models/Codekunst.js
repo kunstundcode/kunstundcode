@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const countrySchema = new mongoose.Schema({
+const codekunstSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'The country name is required'],
+    required: [true, 'The codekunst name is required'],
     minlength: 1
   },
   capitals: {
@@ -22,6 +22,6 @@ const countrySchema = new mongoose.Schema({
   }
 });
 
-const Country = mongoose.model('Country', countrySchema);
+const Codekunst = mongoose.model('Codekunst', codekunstSchema);
 
-module.exports = Country;
+module.exports = Codekunst;

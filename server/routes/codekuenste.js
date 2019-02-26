@@ -1,70 +1,70 @@
 const express = require('express');
-const Country = require('../models/Country')
+const Codekunst = require('../models/Codekunst')
 const { isLoggedIn } = require('../middlewares')
 const router = express.Router();
 
 
 router.use((req, res, next) => {
-  console.log('DEBUG routes/countries');
+  console.log('DEBUG routes/codekuenste');
   next()
 })
 
-// Route to get all countries
+// Route to get all codekuenste
 router.get('/', (req, res, next) => {
-  Country.find()
-    .then(countries => {
-      res.json(countries);
+  Codekunst.find()
+    .then(codekuenste => {
+      res.json(codekuenste);
     })
     .catch(err => next(err))
 });
 
 router.get('/:id', (req, res, next) => {
-  Country.findById(req.params.id)
+  Codekunst.findById(req.params.id)
     .populate('_creator', 'username') // Just populate the username and the _id (default) of the creator
-    .then(country => {
-      res.json(country);
+    .then(codekunst => {
+      res.json(codekunst);
     })
     .catch(err => next(err))
 });
 
-// Route to add a country (protected)
+// Route to add a codekunst (protected)
 router.post('/', isLoggedIn, (req, res, next) => {
   let { name, capitals, area, description } = req.body
   let _creator = req.user._id // req.user contains information about the connected user
-  Country.create({ name, capitals, area, description, _creator })
-    .then(country => {
+  Codekunst.create({ name, capitals, area, description, _creator })
+    .then(codekunst => {
       res.json({
         success: true,
-        country
+        codekunst
       });
     })
     .catch(err => next(err))
 });
 
-// The route is DELETE /api/countries/:id
+// The route is DELETE /api/codekuenste/:id
 router.delete('/:id', (req,res,next)=>{
-  Country.findByIdAndDelete(req.params.id)
-    .then(country => {
+  Codekunst.findByIdAndDelete(req.params.id)
+    .then(codekunst => {
       res.json({
-        message: "The country was deleted",
-        country: country // The deleted country is sent
+        message: "The codekunst was deleted",
+        codekunst: codekunst // The deleted codekunst is sent
       })
     })
     .catch(err => next(err))
 })
 
-// The route is PUT /api/countries/:id
+// The route is PUT /api/codekuenste/:id
 router.put('/:id', (req,res,next)=>{
-  Country.findByIdAndUpdate(req.params.id, {
+  Codekunst.findByIdAndUpdate(req.params.id, {
     name: req.body.name,
     description: req.body.description,
     capitals: req.body.capitals,
     area: req.body.area,
-  }, { new: true }) // To access the updated country (and not the old country)
-    .then(country => {
+  }, { new: true }) // To access the updated codekunst (and not the old codekunst)
+    .then(codekunst => {
       res.json({
-        message: "The country has been updated",
-        country: country
+        message: "The codekunst has been updated",
+        codekunst: codekunst
       })
     })
     .catch(err => next(err))
