@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import api from '../../api';
 
-export default class EditCountry extends Component {
+export default class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -42,8 +42,8 @@ export default class EditCountry extends Component {
   }
   render() {
     return (
-      <div className="EditCountry">
-        <h1>Edit Country</h1>
+      <div className="Profile">
+        <h1>Edit Profile</h1>
         <form onSubmit={this.handleSubmit}>
           Name: <input type="text" value={this.state.name} onChange={(e) => { this.handleInputChange("name", e) }} /> <br />
           Capitals: <input type="text" value={this.state.capitals} onChange={(e) => { this.handleInputChange("capitals", e) }} /> <br />

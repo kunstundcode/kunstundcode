@@ -11,8 +11,8 @@ class Secret extends Component {
   }
   render() {
     return (
-      <div className="Secret">
-        <h2>Secret</h2>
+      <div className="Admin">
+        <h2>Admin</h2>
 
         <div className="result">
           {this.state.secret}

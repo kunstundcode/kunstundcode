@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import api from '../../api';
 
-class Countries extends Component {
+class Codekunst extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      countries: []
+      codekuenste: []
     }
   }
-  deleteCountry(countryId){
-    api.deleteCountry(countryId)
+
+  deleteCodekunst(codekunstId){
+    api.deleteCodekunst(codekunstId)
       .then(data => {
         this.setState({
-          countries: this.state.countries.filter(c => c._id !== countryId),
+          codekuenste: this.state.codekuenste.filter(c => c._id !== codekunstId),
           message: data.message
         })
         // Remove the message after 3 seconds
@@ -24,17 +25,18 @@ class Countries extends Component {
         }, 3000)
       })
   }
+
   render() {
     return (
-      <div className="Countries">
-        <h2>List of countries</h2>
-        {/* `c` represents the current country */}
+      <div className="Codekuenste">
+        <h2>List of codekuenste</h2>
+        {/* `c` represents the current codekunst */}
         <ul>
-          {this.state.countries.map(c => <li key={c._id}>
+          {this.state.codekuenste.map(c => <li key={c._id}>
             {c.name}{' '}
-            <Link to={"/countries/"+c._id}>Detail</Link>{' '}
-            <Link to={"/edit-country/"+c._id}>Edit</Link>{' '}
-            <button onClick={()=>this.deleteCountry(c._id)}>Delete</button>
+            <Link to={"/codekuenste/"+c._id}>Detail</Link>{' '}
+            {/* <Link to={"/edit-codekunst/"+c._id}>Edit</Link>{' '} */}
+            <button onClick={()=>this.deleteCodekunst(c._id)}>Delete</button>
           </li>)}
         </ul>
         {this.state.message && <div className="info">
@@ -44,15 +46,15 @@ class Countries extends Component {
     );
   }
   componentDidMount() {
-    api.getCountries()
-      .then(countries => {
-        console.log(countries)
+    api.getCodekuenste()
+      .then(codekuenste => {
+        console.log(codekuenste)
         this.setState({
-          countries: countries
+          codekuenste: codekuenste
         })
       })
       .catch(err => console.log(err))
   }
 }
 
-export default Countries;
+export default Codekunst;

@@ -55,44 +55,44 @@ export default {
       .get('/logout')
   },
 
-  getCountries() {
+  getCodekuenste() {
     return service
-      .get('/countries')
+      .get('/codekuenste')
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  getCountryDetail(id) {
+  getCodekunstDetail(id) {
     return service
-      .get('/countries/'+id)
+      .get('/codekuenste/'+id)
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  postCountries(data) {
+  postCodekuenste(data) {
     return service
-      .post('/countries', data)
+      .post('/codekuenste', data)
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  deleteCountry(countryId) {
+  deleteCodekunst(codekunstId) {
     return service
-      .delete('/countries/'+countryId)
+      .delete('/codekuenste/'+codekunstId)
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  editCountry(countryId, body) {
+  editCodekunst(codekunstId, body) {
     return service
-      .put('/countries/'+countryId, body)
+      .put('/codekuenste/'+codekunstId, body)
       .then(res => res.data)
       .catch(errHandler)
   },
 
   getSecret() {
     return service
-      .get('/secret')
+      .get('/admin')
       .then(res => res.data)
       .catch(errHandler)
   },
