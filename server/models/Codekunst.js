@@ -1,25 +1,15 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const codekunstSchema = new mongoose.Schema({
-  name: {
+  projectcode: { type: String, unique: true },
+  thumbnail: {
     type: String,
-    required: [true, 'The codekunst name is required'],
-    minlength: 1
+    default: 'http://dpcpa.com/wp-content/uploads/2015/01/thumbnail-default.jpg'
   },
-  capitals: {
-    type: [String],
-    default: []
-  },
-  area: {
-    type: Number,
-  },
-  description: {
-    type: String,
-  },
-  _creator: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  }
+  result: [{ type: Schema.Types.ObjectId, ref: "Result" }],
+  url: { type: String },  //TODO: Really necessary?
+  code: { type: String }
 });
 
 const Codekunst = mongoose.model('Codekunst', codekunstSchema);
