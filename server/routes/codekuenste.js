@@ -1,6 +1,6 @@
 const express = require('express');
 const Codekunst = require('../models/Codekunst')
-const { isLoggedIn } = require('../middlewares')
+const { isLoggedIn, isAdmin} = require('../middlewares')
 const router = express.Router();
 
 
@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   Codekunst.findById(req.params.id)
-    .populate('_creator', 'username') // Just populate the username and the _id (default) of the creator
+    // .populate('_user', 'username') // Just populate the username and the _id (default) of the creator
     .then(codekunst => {
       res.json(codekunst);
     })
@@ -28,10 +28,11 @@ router.get('/:id', (req, res, next) => {
 });
 
 // Route to add a codekunst (protected)
-router.post('/', isLoggedIn, (req, res, next) => {
-  let { name, capitals, area, description } = req.body
-  let _creator = req.user._id // req.user contains information about the connected user
-  Codekunst.create({ name, capitals, area, description, _creator })
+router.post('/', (req, res, next) => {
+  // router.post('/', isLoggedIn, (req, res, next) => {
+  let { thumbnail, result, projectcode, url, code } = req.body
+  // let _creator = req.user._id // req.user contains information about the connected user
+  Codekunst.create({ thumbnail, result, projectcode, url, code })
     .then(codekunst => {
       res.json({
         success: true,
@@ -56,10 +57,11 @@ router.delete('/:id', (req,res,next)=>{
 // The route is PUT /api/codekuenste/:id
 router.put('/:id', (req,res,next)=>{
   Codekunst.findByIdAndUpdate(req.params.id, {
-    name: req.body.name,
-    description: req.body.description,
-    capitals: req.body.capitals,
-    area: req.body.area,
+    thumbnail: req.body.thumbnail,
+    result: req.body.result,
+    projectcode: req.body.projectcode,
+    url: req.body.url,
+    code: req.body.code,
   }, { new: true }) // To access the updated codekunst (and not the old codekunst)
     .then(codekunst => {
       res.json({
