@@ -33,10 +33,11 @@ class Codekunst extends Component {
         {/* `c` represents the current codekunst */}
         <ul>
           {this.state.codekuenste.map(c => <li key={c._id}>
-            {c.name}{' '}
+            {c.projectcode}{' '}
+            <img src={c.thumbnail} alt="codekunstpicture" className="thumbnail"/>
             <Link to={"/codekuenste/"+c._id}>Detail</Link>{' '}
             {/* <Link to={"/edit-codekunst/"+c._id}>Edit</Link>{' '} */}
-            <button onClick={()=>this.deleteCodekunst(c._id)}>Delete</button>
+            {/* <button onClick={()=>this.deleteCodekunst(c._id)}>Delete</button> */}
           </li>)}
         </ul>
         {this.state.message && <div className="info">
@@ -45,6 +46,7 @@ class Codekunst extends Component {
       </div>
     );
   }
+
   componentDidMount() {
     api.getCodekuenste()
       .then(codekuenste => {

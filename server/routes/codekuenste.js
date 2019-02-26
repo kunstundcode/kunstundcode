@@ -20,7 +20,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   Codekunst.findById(req.params.id)
-    // .populate('_user', 'username') // Just populate the username and the _id (default) of the creator
+    .populate('_user', 'username') // Just populate the username and the _id (default) of the creator
     .then(codekunst => {
       res.json(codekunst);
     })

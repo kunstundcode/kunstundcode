@@ -1,3 +1,5 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
 // --------------------
 // Definition of variables
 $primary: #32c3ff;
@@ -17,6 +19,10 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+.thumbnail {
+  width: 100px;
 }
 
 .info {

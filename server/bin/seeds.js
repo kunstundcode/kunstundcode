@@ -38,14 +38,14 @@ let codekuenste = [
   {
     projectcode: "P_1_0_01",
     thumbnail: "http://www.generative-gestaltung.de/2/img/P_1_0_01.png",
-    result: [],
+    userarts: [],
     url: "http://www.generative-gestaltung.de/2/sketches/?01_P/P_1_0_01",
     code: '"use strict";function setup(){createCanvas(720,720);noCursor();colorMode(HSB,360,100,100);rectMode(CENTER);noStroke()}function draw(){background(mouseY/2,100,100);fill(360-mouseY/2,100,100);rect(360,360,mouseX+1,mouseX+1)}function keyPressed(){if(key=="s"||key=="S"){saveCanvas(gd.timestamp(),"png")}};'
   },
   {
     projectcode: "P_1_1_1_01",
     thumbnail: "http://www.generative-gestaltung.de/2/img/P_1_1_1_01.png",
-    result: [],
+    userarts: [],
     url: "http://www.generative-gestaltung.de/2/sketches/?01_P/P_1_1_1_01",
     code: '"use strict";var stepX;var stepY;function setup(){createCanvas(800,400);noStroke();colorMode(HSB,width,height,100)}function draw(){stepX=mouseX+2;stepY=mouseY+2;for(var b=0;b<height;b+=stepY){for(var a=0;a<width;a+=stepX){fill(a,height-b,100);rect(a,b,stepX,stepY)}}}function keyPressed(){if(key=="s"||key=="S"){saveCanvas(gd.timestamp(),"png")}};'
   }
@@ -82,7 +82,30 @@ Promise.all([User.deleteMany(), Codekunst.deleteMany(), Userart.deleteMany()])
     for(let i = 4; i < userarts.length; i++) {userarts[i]._codekunst = codekunst2}
   })
   .then (() => Userart.create(userarts))
-  .then (() => mongoose.disconnect())
+  .then ((alluserarts) => {
+   Promise.all([Userart.find({_codekunst: mongoose.Types.ObjectId(codekunst1)}), Userart.find({_codekunst: mongoose.Types.ObjectId(codekunst2)})])
+   .then(values => {
+    let resultArr1 = [];
+    let resultArr2 = [];
+    values[0].forEach(item => resultArr1.push(item._id))
+    values[1].forEach(item => resultArr2.push(item._id))
+		console.log('TCL: resultArr1', resultArr1)
+    console.log('TCL: resultArr2', resultArr2)
+    Promise.all([
+      Codekunst.findByIdAndUpdate(codekunst1,{ userarts: resultArr1}),
+      Codekunst.findByIdAndUpdate(codekunst2,{ userarts: resultArr2})
+    ])
+    .then (() => mongoose.disconnect())
+    .catch(err => {
+      mongoose.disconnect();
+      throw err;
+    });
+   })
+   .catch(err => {
+      mongoose.disconnect();
+      throw err;
+    });
+  })
   .catch(err => {
     mongoose.disconnect();
     throw err;

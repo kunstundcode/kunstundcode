@@ -18,6 +18,10 @@ class Secret extends Component {
           {this.state.secret}
         </div>
 
+        <div>
+          
+        </div>
+
         {this.state.message && <div className="info info-danger">
           {this.state.message}
         </div>}

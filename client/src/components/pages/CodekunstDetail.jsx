@@ -15,11 +15,11 @@ export default class CodekunstDetail extends Component {
     return (
       <div className="CodekunstDetail">
         <h1>CodekunstDetail</h1>
-        <strong>Name</strong>: {this.state.codekunst.name}<br/>
-        <strong>Capitals</strong>: {this.state.codekunst.capitals.join(', ')}<br/>
-        <strong>Area</strong>: {this.state.codekunst.area}<br/>
-        <strong>Description</strong>: {this.state.codekunst.description}<br/>
-        <strong>Creator</strong>: {this.state.codekunst._creator.username}<br/>
+        <strong>Projectcode</strong>: {this.state.codekunst.projectcode}<br/>
+        <img src={this.state.codekunst.thumbnail} alt="codekunstimage" className="thumbnail" />
+        {/* //TODO: show all results, when seed is updated with results array */}
+        {/* {this.state.codekunst.result} */}  
+        {/* <strong>Creator</strong>: {this.state.codekunst._user.username}<br/> */}
       </div>
     )
   }

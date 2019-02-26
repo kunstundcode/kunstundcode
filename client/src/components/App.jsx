@@ -45,7 +45,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/codekunst" component={Codekunst} />
-          <Route exact path="/codekunst/:codekunstId" component={CodekunstDetail} />
+          <Route exact path="/codekuenste/:codekunstId" component={CodekunstDetail} />
           <Route exact path="/user/:userId" component={Profile} />
           {/* <Route exact path="/add-country" component={AddCountry} /> */}
           <Route exact path="/signup" component={Signup} />
