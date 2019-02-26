@@ -21,14 +21,23 @@ export default {
   service: service,
 
   isLoggedIn() {
+    console.log(localStorage.getItem('user'))
     return localStorage.getItem('user') != null
+  },
+
+  isAdmin() {
+    if (localStorage.getItem('user') === null) return false
+    else {
+      let loggedInUser = JSON.parse(localStorage.getItem('user'));
+      if (loggedInUser.isAdmin) return true
+      else return false;
+    }
   },
 
   signup(userInfo) {
     return service
       .post('/signup', userInfo)
       .then(res => {
-        // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
         return res.data
       })
