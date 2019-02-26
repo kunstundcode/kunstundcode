@@ -17,9 +17,14 @@ export default class CodekunstDetail extends Component {
         <h1>CodekunstDetail</h1>
         <strong>Projectcode</strong>: {this.state.codekunst.projectcode}<br/>
         <img src={this.state.codekunst.thumbnail} alt="codekunstimage" className="thumbnail" />
-        {/* //TODO: show all results, when seed is updated with results array */}
-        {/* {this.state.codekunst.result} */}  
-        {/* <strong>Creator</strong>: {this.state.codekunst._user.username}<br/> */}
+        {this.state.codekunst.userarts.map((item, i) =>
+            <div key={i}>
+              <img src={item.pictureUrl} alt="userartimage" className="thumbnail" />
+              <br />
+              <strong>Creator: </strong><em>{item._user.username}</em>
+              <br />
+            </div>
+        )}
       </div>
     )
   }
