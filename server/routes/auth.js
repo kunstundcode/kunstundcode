@@ -5,7 +5,7 @@ const User = require("../models/User")
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt")
-const bcryptSalt = 10
+const bcryptRounds = 10
 
 router.post("/signup", (req, res, next) => {
   const { username, password, name } = req.body
@@ -19,7 +19,7 @@ router.post("/signup", (req, res, next) => {
         res.status(409).json({ message: "The username already exists" })
         return
       }
-      const salt = bcrypt.genSaltSync(bcryptSalt)
+      const salt = bcrypt.genSaltSync(bcryptRounds)
       const hashPass = bcrypt.hashSync(password, salt)
       const newUser = new User({ username, password: hashPass, name })
       return newUser.save()
