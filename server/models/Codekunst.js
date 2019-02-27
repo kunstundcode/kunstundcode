@@ -8,7 +8,6 @@ const codekunstSchema = new mongoose.Schema({
     default: 'http://dpcpa.com/wp-content/uploads/2015/01/thumbnail-default.jpg'
   },
   userarts: [{ type: Schema.Types.ObjectId, ref: "Userart" }],
-  url: { type: String },  //TODO: Really necessary?
   code: { type: String }
 });
 

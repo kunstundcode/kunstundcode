@@ -31,9 +31,9 @@ router.get('/:id', (req, res, next) => {
 // Route to add a codekunst (protected)
 router.post('/', (req, res, next) => {
   // router.post('/', isLoggedIn, (req, res, next) => {
-  let { thumbnail, result, projectcode, url, code } = req.body
+  let { projectcode, thumbnail, code } = req.body
   // let _creator = req.user._id // req.user contains information about the connected user
-  Codekunst.create({ thumbnail, result, projectcode, url, code })
+  Codekunst.create({ projectcode, thumbnail, code })
     .then(codekunst => {
       res.json({
         success: true,
