@@ -46,8 +46,17 @@ export default class CodekunstDetail extends Component {
           code: codekunst.code,
           thumbnail: codekunst.thumbnail
         })
-        // eslint-disable-next-line
-        eval(codekunst.code)
+
+        //console.log('TCL: CodekunstDetail -> componentDidMount -> codekunst', codekunst)
+        
+        let executeArtsyCode = function(projectcode) {
+          console.log('TCL: CodekunstDetail -> componentDidMount -> projectcode', projectcode)  
+          // eslint-disable-next-line
+          eval(codekunst.code)
+        }
+        executeArtsyCode(codekunst.projectcode)
+
+
 
       })
       .catch(err => console.log(err))
