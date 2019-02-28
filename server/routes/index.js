@@ -15,7 +15,6 @@ router.get('/admin', isLoggedIn, isAdmin, (req, res, next) => {
 });
 
 router.post('/uploadPicture/:projectCode', isLoggedIn,upload.single("file"), (req, res, next) => { //TODO: Protect with isLoggedIn
-  console.log(req.user)
   let projectCode = req.params.projectCode;
   let receivedFileUrl = req.file.secure_url;
   Codekunst.find({ "projectcode" : projectCode})
@@ -26,7 +25,9 @@ router.post('/uploadPicture/:projectCode', isLoggedIn,upload.single("file"), (re
       _user: req.user._id
     }
     Userart.create(newUserArt)
-    .then(createdCodekunst => console.log(createdCodekunst))
+    .then(createdArt => Codekunst.findByIdAndUpdate(createdArt._codekunst,
+      {$push: {userarts: mongoose.Types.ObjectId(createdArt._id)}}
+    ))
     .catch(err => console.log(err))
   })
   .catch(err => console.log(err))
