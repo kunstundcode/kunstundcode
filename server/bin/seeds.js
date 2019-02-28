@@ -40,7 +40,7 @@ let codekuenste = [
     thumbnail: "http://www.generative-gestaltung.de/2/img/P_1_0_01.png",
     userarts: [],
     url: "http://www.generative-gestaltung.de/2/sketches/?01_P/P_1_0_01",
-    code: '"use strict";function setup(){createCanvas(720,720);noCursor();colorMode(HSB,360,100,100);rectMode(CENTER);noStroke()}function draw(){background(mouseY/2,100,100);fill(360-mouseY/2,100,100);rect(360,360,mouseX+1,mouseX+1)}function keyPressed(){if(key=="s"||key=="S"){saveCanvas(gd.timestamp(),"png")}};'
+    code: 'var s=function(e){console.log(e),e.setup=function(){e.createCanvas(720,720),e.noCursor(),e.colorMode(e.HSB,360,100,100),e.rectMode(e.CENTER),e.noStroke()},e.draw=function(){e.background(e.mouseY/2,100,100),e.fill(360-e.mouseY/2,100,100),e.rect(360,360,e.mouseX+1,e.mouseX+1)},e.keyPressed=function(){"s"!=e.key&&"S"!=e.key||e.saveCanvas("k","png")}},myp5=new p5(s,document.getElementById("box"));'
   },
   {
     projectcode: "P_1_1_1_01",

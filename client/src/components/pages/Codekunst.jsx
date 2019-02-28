@@ -37,7 +37,7 @@ class Codekunst extends Component {
             <img src={c.thumbnail} alt="codekunstpicture" className="thumbnail"/>
             <Link to={"/codekuenste/"+c._id}>Detail</Link>{' '}
             {/* <Link to={"/edit-codekunst/"+c._id}>Edit</Link>{' '} */}
-            {/* <button onClick={()=>this.deleteCodekunst(c._id)}>Delete</button> */}
+            {api.isAdmin() && <button onClick={()=>this.deleteCodekunst(c._id)}>Delete</button>}
           </li>)}
         </ul>
         {this.state.message && <div className="info">

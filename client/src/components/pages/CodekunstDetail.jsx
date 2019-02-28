@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import api from '../../api';
+// import sketch from './sketch'
+// import P5Wrapper from './P5Wrapper';
 
 export default class CodekunstDetail extends Component {
   constructor(props) {
@@ -20,7 +22,7 @@ export default class CodekunstDetail extends Component {
         <h1>CodekunstDetail</h1>
         <strong>Projectcode</strong>: {this.state.codekunst.projectcode}<br/>
         <img src={this.state.codekunst.thumbnail} alt="codekunstimage" className="thumbnail" />
-
+        {/* <P5Wrapper sketch={sketch} /> */}
         <pre style={{textAlign: 'left', margin: 20}}>{this.state.code}</pre>
         <div id="box" style={{border: '1px solid black'}}></div>
 
