@@ -57,9 +57,6 @@ export default class CodekunstDetail extends Component {
 
   componentWillMount() {
     window.addEventListener('keydown', this.handleKeyboardInput.bind(this));
-  }
-  
-  componentDidMount() {
     api.getCodekunstDetail(this.props.match.params.codekunstId)
     .then(codekunst => {
       this.setState({
@@ -67,6 +64,15 @@ export default class CodekunstDetail extends Component {
         name: codekunst.name,
         code: codekunst.code,
         thumbnail: codekunst.thumbnail,
+        userarts: codekunst.userarts
+      })
+    }).catch(err => console.log(err))
+  }
+  
+  componentDidMount() {
+    api.getCodekunstDetail(this.props.match.params.codekunstId)
+    .then(codekunst => {
+      this.setState({
         userarts: codekunst.userarts
       })
       let executeArtsyCode = function(projectcode) {

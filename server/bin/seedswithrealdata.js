@@ -39,8 +39,7 @@ let codekuenste = [
     projectcode: "P_1_0_01",
     thumbnail: "http://www.generative-gestaltung.de/2/img/P_1_0_01.png",
     userarts: [],
-    url: "http://www.generative-gestaltung.de/2/sketches/?01_P/P_1_0_01",
-    code: 'var s=function(e){console.log(e),e.setup=function(){e.createCanvas(720,720),e.noCursor(),e.colorMode(e.HSB,360,100,100),e.rectMode(e.CENTER),e.noStroke()},e.draw=function(){e.background(e.mouseY/2,100,100),e.fill(360-e.mouseY/2,100,100),e.rect(360,360,e.mouseX+1,e.mouseX+1)},e.keyPressed=function(){"s"!=e.key&&"S"!=e.key||e.saveCanvas("k","png")}},myp5=new p5(s,document.getElementById("box"));'
+    code: 'function dataURLtoFile(e,o){let t=e.split(","),a=t[0].match(/:(.*?);/)[1],n=atob(t[1]),c=n.length,i=new Uint8Array(c);for(;c--;)i[c]=n.charCodeAt(c);return new File([i],o,{type:a})}let s=function(e){e.setup=function(){e.createCanvas(720,720),e.noCursor(),e.colorMode(e.HSB,360,100,100),e.rectMode(e.CENTER),e.noStroke()},e.draw=function(){e.background(e.mouseY/2,100,100),e.fill(360-e.mouseY/2,100,100),e.rect(360,360,e.mouseX+1,e.mouseX+1)},e.keyPressed=function(){if("s"===e.key||"S"===e.key){let o=e.canvas.toDataURL("image/jpeg"),t=Date.now();console.log("TCL: p.keyPressed -> filename",t);let a=dataURLtoFile(o,t),n="";n=window.location.origin.includes("localhost")?"http://localhost:5000/api/uploadPicture/"+projectcode:window.location.origin+"/api/uploadPicture/"+projectcode;let c=new FormData;c.append("file",a);let i={async:!0,crossDomain:!0,url:n,method:"POST",headers:{"cache-control":"no-cache","Postman-Token":"c398ba57-8976-47e9-acc1-ec8e4c121b09"},processData:!1,contentType:!1,mimeType:"multipart/form-data",data:c,xhrFields:{withCredentials:!0}};$.ajax(i).done(function(e){console.log(e)})}}},myp5=new p5(s,document.getElementById("box"));'
   },
   {
     projectcode: "P_1_1_1_01",
@@ -54,6 +53,7 @@ let codekuenste = [
 Promise.all([User.deleteMany(), Codekunst.deleteMany(), Userart.deleteMany()])
 .then (() => User.create(users))
 .then (() => Codekunst.create(codekuenste))
+.then (() => mongoose.disconnect())
 .catch(err => {
   mongoose.disconnect();
   throw err;
