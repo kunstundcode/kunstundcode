@@ -46,7 +46,26 @@ let codekuenste = [
     thumbnail: "http://www.generative-gestaltung.de/2/img/P_1_1_1_01.png",
     userarts: [],
     url: "http://www.generative-gestaltung.de/2/sketches/?01_P/P_1_1_1_01",
-    code: '"use strict";var stepX;var stepY;function setup(){createCanvas(800,400);noStroke();colorMode(HSB,width,height,100)}function draw(){stepX=mouseX+2;stepY=mouseY+2;for(var b=0;b<height;b+=stepY){for(var a=0;a<width;a+=stepX){fill(a,height-b,100);rect(a,b,stepX,stepY)}}}function keyPressed(){if(key=="s"||key=="S"){saveCanvas(gd.timestamp(),"png")}};'
+    code: 'function dataURLtoFile(e,t){let o=e.split(","),a=o[0].match(/:(.*?);/)[1],n=atob(o[1]),i=n.length,c=new Uint8Array(i);for(;i--;)c[i]=n.charCodeAt(i);return new File([c],t,{type:a})}let s=function(e){"use strict";var t,o;e.setup=function(){e.createCanvas(800,400),e.noStroke(),e.colorMode(e.HSB,e.width,e.height,100)},e.draw=function(){t=e.mouseX+2,o=e.mouseY+2;for(;0<e.height;e.gridY+=o)for(var a=0;a<e.width;a+=t)e.fill(a,e.height-0,100),e.rect(a,0,t,o)},e.keyPressed=function(){if("s"===e.key||"S"===e.key){let t=e.canvas.toDataURL("image/jpeg"),o=Date.now();console.log("TCL: p.keyPressed -> filename",o);let a=dataURLtoFile(t,o),n="";n=window.location.origin.includes("localhost")?"http://localhost:5000/api/uploadPicture/"+projectcode:window.location.origin+"/api/uploadPicture/"+projectcode;let i=new FormData;i.append("file",a);let c={async:!0,crossDomain:!0,url:n,method:"POST",headers:{"cache-control":"no-cache","Postman-Token":"c398ba57-8976-47e9-acc1-ec8e4c121b09"},processData:!1,contentType:!1,mimeType:"multipart/form-data",data:i,xhrFields:{withCredentials:!0}};$.ajax(c).done(function(e){console.log(e)})}}},myp5=new p5(s,document.getElementById("box"));'
+  },
+  {
+    projectcode: "P_1_1_2_01",
+    thumbnail: "http://www.generative-gestaltung.de/2/img/P_1_1_2_01.png",
+    userarts: [],
+    url: "http://www.generative-gestaltung.de/2/sketches/?01_P/P_1_1_1_01",
+    code: `function dataURLtoFile(dataurl,filename){let arr=dataurl.split(','),mime=arr[0].match(/:(.*?);/)[1],bstr=atob(arr[1]),n=bstr.length,u8arr=new Uint8Array(n);while(n--){u8arr[n]=bstr.charCodeAt(n)}
+    return new File([u8arr],filename,{type:mime})}
+    let s=function(p){var segmentCount=360;var radius=300;p.setup=function(){p.createCanvas(800,800);p.noStroke()}
+    p.draw=function(){p.colorMode(p.HSB,360,p.width,p.height);p.background(360,0,p.height);var angleStep=360/segmentCount;p.beginShape(p.TRIANGLE_FAN);p.vertex(p.width/2,p.height/2);for(var angle=0;angle<=360;angle+=angleStep){var vx=p.width/2+p.cos(p.radians(angle))*radius;var vy=p.height/2+p.sin(p.radians(angle))*radius;p.vertex(vx,vy);p.fill(angle,p.mouseX,p.mouseY)}
+    p.endShape()}
+    p.keyPressed=function(){if(p.key==='s'||p.key==='S'){console.log("Key Pressed!")
+    let dataURL=p.canvas.toDataURL("image/jpeg");let filename=Date.now()
+    console.log('TCL: p.keyPressed -> filename',filename)
+    let file=dataURLtoFile(dataURL,filename);let url='';if(window.location.origin.includes('localhost'))url="http://localhost:5000/api/uploadPicture/"+projectcode
+    else url=window.location.origin+"/api/uploadPicture/"+projectcode;let form=new FormData();form.append("file",file);let settings={"async":!0,"crossDomain":!0,"url":url,"method":"POST","headers":{"cache-control":"no-cache","Postman-Token":"c398ba57-8976-47e9-acc1-ec8e4c121b09"},"processData":!1,"contentType":!1,"mimeType":"multipart/form-data","data":form,"xhrFields":{"withCredentials":!0}}
+    $.ajax(settings).done(function(response){console.log(response)})}
+    switch(p.key){case '1':segmentCount=360;break;case '2':segmentCount=45;break;case '3':segmentCount=24;break;case '4':segmentCount=12;break;case '5':segmentCount=6;break}}}
+    let myp5=new p5(s,document.getElementById("box"))`
   }
 ];
 

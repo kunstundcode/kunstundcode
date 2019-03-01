@@ -17,7 +17,11 @@ export default class CodekunstDetail extends Component {
     const code = e.keyCode ? e.keyCode : e.which;
 
     if (code === 83) { //s key
+      console.log("S clicked on react, timeout and setstate!")
+      console.log("S clicked, before Timeout-SetState-Update length in state is " + this.state.userarts.length)
+      console.log("Please wait, your art is going to be saved and will appear shortly")
       setTimeout(() => {
+        console.log("Timeout called!")
         api.getCodekunstDetail(this.props.match.params.codekunstId)
         .then(codekunst => {
           this.setState({
@@ -27,8 +31,9 @@ export default class CodekunstDetail extends Component {
             thumbnail: codekunst.thumbnail,
             userarts: codekunst.userarts
           })
+          console.log("S clicked, AFTER Timeout-SetState-Update length in state is " + this.state.userarts.length)
         }).catch(err => console.log(err))
-      },1000)
+      },6000)
     }
   }
 
@@ -43,6 +48,7 @@ export default class CodekunstDetail extends Component {
         <img src={this.state.codekunst.thumbnail} alt="codekunstimage" className="thumbnail" />
         <pre style={{textAlign: 'left', margin: 20}}>{this.state.code}</pre>
         <div id="box" style={{border: '1px solid black'}}></div>
+        <div className="d-flex flex-row">
         {this.state.codekunst.userarts.map((item, i) =>
             <div key={i}>
               <img src={item.pictureUrl} alt="userartimage" className="thumbnail" />
@@ -51,12 +57,14 @@ export default class CodekunstDetail extends Component {
               <br />
             </div>
         )}
+        </div>
       </div>
     )
   }
 
   componentWillMount() {
     window.addEventListener('keydown', this.handleKeyboardInput.bind(this));
+    console.log("Component will mount. Eventlistener added!")
     api.getCodekunstDetail(this.props.match.params.codekunstId)
     .then(codekunst => {
       this.setState({
@@ -70,6 +78,8 @@ export default class CodekunstDetail extends Component {
   }
   
   componentDidMount() {
+    console.log("Component did mount. Execute code with eval");
+
     api.getCodekunstDetail(this.props.match.params.codekunstId)
     .then(codekunst => {
       this.setState({
@@ -82,4 +92,18 @@ export default class CodekunstDetail extends Component {
       executeArtsyCode(codekunst.projectcode);
     }).catch(err => console.log(err))
   }
+
+  componentWillUpdate() {
+    console.log("Will updated called")
+  }
+
+  componentDidUpdate() {
+    console.log("Did update called")
+    console.log("Userarts length when -componentDidUpdate: " + this.state.userarts.length)
+  }
+
+  componentWillUnmount() {
+    console.log("Will unmount called")
+  }
 }
+
