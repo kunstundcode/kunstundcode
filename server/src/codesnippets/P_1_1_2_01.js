@@ -7,26 +7,38 @@ function dataURLtoFile(dataurl, filename) {
   return new File([u8arr], filename, {type:mime});
 }
 
-
 let s = function(p) {
-  p.setup = function () {
-    p.createCanvas(720, 720);
-    p.noCursor();
 
-    p.colorMode(p.HSB, 360, 100, 100);
-    p.rectMode(p.CENTER);
+  var segmentCount = 360;
+  var radius = 300;
+
+  p.setup = function () {
+    p.createCanvas(800, 800);
     p.noStroke();
   }
 
-  p.draw = function () {
-    p.background(p.mouseY / 2, 100, 100);
+  p.draw = function() {
+    p.colorMode(p.HSB, 360, p.width, p.height);
+    p.background(360, 0, p.height);
 
-    p.fill(360 - p.mouseY / 2, 100, 100);
-    p.rect(360, 360, p.mouseX + 1, p.mouseX + 1);
+    var angleStep = 360 / segmentCount;
+
+    p.beginShape(p.TRIANGLE_FAN);
+    p.vertex(p.width / 2, p.height / 2);
+
+    for (var angle = 0; angle <= 360; angle += angleStep) {
+      var vx = p.width / 2 + p.cos(p.radians(angle)) * radius;
+      var vy = p.height / 2 + p.sin(p.radians(angle)) * radius;
+      p.vertex(vx, vy);
+      p.fill(angle, p.mouseX, p.mouseY);
+    }
+
+    p.endShape();
   }
 
   p.keyPressed = function () {
     if (p.key === 's' || p.key === 'S') {
+      console.log("Key Pressed!")
       let dataURL = p.canvas.toDataURL( "image/jpeg" );
       let filename = Date.now()
 			console.log('TCL: p.keyPressed -> filename', filename)
@@ -60,6 +72,25 @@ let s = function(p) {
       $.ajax(settings).done(function (response) {
         console.log(response);
       });
+    }
+
+    switch (p.key) {
+      case '1':
+        segmentCount = 360;
+        break;
+      case '2':
+        segmentCount = 45;
+        break;
+      case '3':
+        segmentCount = 24;
+        break;
+      case '4':
+        segmentCount = 12;
+        break;
+      case '5':
+        segmentCount = 6;
+        break;
+      
     }
   }
 }

@@ -1,6 +1,7 @@
 const express = require('express');
 const Codekunst = require('../models/Codekunst')
 const { isLoggedIn, isAdmin} = require('../middlewares')
+const {dynamicSort}  = require("../src/helpers");
 const router = express.Router();
 
 
@@ -13,6 +14,7 @@ router.use((req, res, next) => {
 router.get('/', (req, res, next) => {
   Codekunst.find()
     .then(codekuenste => {
+      codekuenste.sort(dynamicSort("projectcode"));
       res.json(codekuenste);
     })
     .catch(err => next(err))
@@ -23,6 +25,8 @@ router.get('/:id', (req, res, next) => {
     .populate('userarts') 
     .populate({path : 'userarts', populate : {path : '_user'}})
     .then(codekunst => {
+      console.log("Userarts Length that will be send: " +codekunst.userarts.length);
+      codekunst.userarts.sort(dynamicSort("created_at")).reverse();
       res.json(codekunst);
     })
     .catch(err => next(err))
