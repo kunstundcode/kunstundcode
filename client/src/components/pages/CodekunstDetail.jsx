@@ -18,19 +18,32 @@ export default class CodekunstDetail extends Component {
     const code = e.keyCode ? e.keyCode : e.which;
 
     if (code === 83) { //s key
-      console.log("S pressed")
-      console.log("this: " + this.state.userarts.length)
-      let newUserartsArray;
-      api.getCodekunstDetail(this.props.match.params.codekunstId)
-      .then(codekunst => newUserartsArray = codekunst.userarts)
-      .catch(err => console.log(err));
+      // console.log("S pressed")
+      // console.log("this: " + this.state.userarts.length)
+      // let newUserartsArray;
+      // api.getCodekunstDetail(this.props.match.params.codekunstId)
+      // .then(codekunst => newUserartsArray = codekunst.userarts)
+      // .catch(err => console.log(err));
+      // setTimeout(() => {
+      //   console.log("newUserarts: " + newUserartsArray.length)
+      //   this.setState({
+      //     userarts: newUserartsArray
+      //   })
+      // console.log("this after change: " + this.state.userarts.length)
+      // }, 2500)
+      
       setTimeout(() => {
-        console.log("newUserarts: " + newUserartsArray.length)
-        this.setState({
-          userarts: newUserartsArray
-        })
-      console.log("this after change: " + this.state.userarts.length)
-      }, 2500)
+        api.getCodekunstDetail(this.props.match.params.codekunstId)
+        .then(codekunst => {
+          this.setState({
+            codekunst: codekunst,
+            name: codekunst.name,
+            code: codekunst.code,
+            thumbnail: codekunst.thumbnail,
+            userarts: codekunst.userarts
+          })
+        }).catch(err => console.log(err))
+      },1000)
     }
   }
 
@@ -81,4 +94,20 @@ export default class CodekunstDetail extends Component {
     })
     .catch(err => console.log(err))
   }
+
+  // componentDidUpdate() {
+  //   let newUserartsArray;
+  //     api.getCodekunstDetail(this.props.match.params.codekunstId)
+  //     .then(codekunst => {
+  //       newUserartsArray = codekunst.userarts;
+  //       this.setState({
+  //         userarts: newUserartsArray
+  //       })
+  //     })
+  //     .catch(err => console.log(err));
+  //     // setTimeout(() => {
+  //       // console.log("newUserarts: " + newUserartsArray.length)
+  //     // console.log("this after change: " + this.state.userarts.length)
+  //     // }, 2500)
+  // }
 }

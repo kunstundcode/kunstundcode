@@ -24,8 +24,6 @@ router.get('/:id', (req, res, next) => {
     .populate('userarts') 
     .populate({path : 'userarts', populate : {path : '_user'}})
     .then(codekunst => {
-			console.log('TCL: codekunst', codekunst.userarts[0])
-      
       codekunst.userarts.sort(dynamicSort("created_at")).reverse();
       res.json(codekunst);
     })
