@@ -1,6 +1,7 @@
 const express = require('express');
 const Codekunst = require('../models/Codekunst')
 const { isLoggedIn, isAdmin} = require('../middlewares')
+const {dynamicSort}  = require("../src/helpers");
 const router = express.Router();
 
 
@@ -23,6 +24,9 @@ router.get('/:id', (req, res, next) => {
     .populate('userarts') 
     .populate({path : 'userarts', populate : {path : '_user'}})
     .then(codekunst => {
+			console.log('TCL: codekunst', codekunst.userarts[0])
+      
+      codekunst.userarts.sort(dynamicSort("created_at")).reverse();
       res.json(codekunst);
     })
     .catch(err => next(err))

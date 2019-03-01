@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import api from '../../api';
-// import sketch from './sketch'
-// import P5Wrapper from './P5Wrapper';
 
 export default class CodekunstDetail extends Component {
   constructor(props) {
@@ -20,21 +18,19 @@ export default class CodekunstDetail extends Component {
     const code = e.keyCode ? e.keyCode : e.which;
 
     if (code === 83) { //s key
-        // this.setState({ keyboardInput: {'Y', -1 }});
-        // setTimeout(() => {
-          console.log("From the State: " + this.state.userarts)
-
-          api.getCodekunstDetail(this.props.match.params.codekunstId)
-          .then(codekunst => {
-            console.log("From the Db: " + codekunst.userarts);
-            this.setState({
-              userarts: codekunst.userarts,
-            })
-            console.log("From the State: " + this.state.userarts)
-
-          })
-          .catch(err => console.log(err))
-        // }, 1500);
+      console.log("S pressed")
+      console.log("this: " + this.state.userarts.length)
+      let newUserartsArray;
+      api.getCodekunstDetail(this.props.match.params.codekunstId)
+      .then(codekunst => newUserartsArray = codekunst.userarts)
+      .catch(err => console.log(err));
+      setTimeout(() => {
+        console.log("newUserarts: " + newUserartsArray.length)
+        this.setState({
+          userarts: newUserartsArray
+        })
+      console.log("this after change: " + this.state.userarts.length)
+      }, 2500)
     }
   }
 
@@ -49,7 +45,6 @@ export default class CodekunstDetail extends Component {
         <img src={this.state.codekunst.thumbnail} alt="codekunstimage" className="thumbnail" />
         <pre style={{textAlign: 'left', margin: 20}}>{this.state.code}</pre>
         <div id="box" style={{border: '1px solid black'}}></div>
-
         {this.state.codekunst.userarts.map((item, i) =>
             <div key={i}>
               <img src={item.pictureUrl} alt="userartimage" className="thumbnail" />
@@ -69,23 +64,21 @@ export default class CodekunstDetail extends Component {
   componentDidMount() {
 
     api.getCodekunstDetail(this.props.match.params.codekunstId)
-      .then(codekunst => {
-        this.setState({
-          codekunst: codekunst,
-          name: codekunst.name,
-          code: codekunst.code,
-          thumbnail: codekunst.thumbnail,
-          userarts: codekunst.userarts
-        })
-
-        //console.log('TCL: CodekunstDetail -> componentDidMount -> codekunst', codekunst)
+    .then(codekunst => {
+      this.setState({
+        codekunst: codekunst,
+        name: codekunst.name,
+        code: codekunst.code,
+        thumbnail: codekunst.thumbnail,
+        userarts: codekunst.userarts
+    })
         
         let executeArtsyCode = function(projectcode) {
           // eslint-disable-next-line
           eval(codekunst.code)
         }
         executeArtsyCode(codekunst.projectcode);
-      })
-      .catch(err => console.log(err))
+    })
+    .catch(err => console.log(err))
   }
 }
