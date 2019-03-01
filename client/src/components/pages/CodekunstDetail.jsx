@@ -13,25 +13,10 @@ export default class CodekunstDetail extends Component {
     }
   }
 
-  //TODO: Upadte the State when key is pressed! Does not work, why? 
   handleKeyboardInput = (e) => {
     const code = e.keyCode ? e.keyCode : e.which;
 
     if (code === 83) { //s key
-      // console.log("S pressed")
-      // console.log("this: " + this.state.userarts.length)
-      // let newUserartsArray;
-      // api.getCodekunstDetail(this.props.match.params.codekunstId)
-      // .then(codekunst => newUserartsArray = codekunst.userarts)
-      // .catch(err => console.log(err));
-      // setTimeout(() => {
-      //   console.log("newUserarts: " + newUserartsArray.length)
-      //   this.setState({
-      //     userarts: newUserartsArray
-      //   })
-      // console.log("this after change: " + this.state.userarts.length)
-      // }, 2500)
-      
       setTimeout(() => {
         api.getCodekunstDetail(this.props.match.params.codekunstId)
         .then(codekunst => {
@@ -75,7 +60,6 @@ export default class CodekunstDetail extends Component {
   }
   
   componentDidMount() {
-
     api.getCodekunstDetail(this.props.match.params.codekunstId)
     .then(codekunst => {
       this.setState({
@@ -84,30 +68,12 @@ export default class CodekunstDetail extends Component {
         code: codekunst.code,
         thumbnail: codekunst.thumbnail,
         userarts: codekunst.userarts
-    })
-        
-        let executeArtsyCode = function(projectcode) {
-          // eslint-disable-next-line
-          eval(codekunst.code)
-        }
-        executeArtsyCode(codekunst.projectcode);
-    })
-    .catch(err => console.log(err))
+      })
+      let executeArtsyCode = function(projectcode) {
+        // eslint-disable-next-line
+        eval(codekunst.code)
+      }
+      executeArtsyCode(codekunst.projectcode);
+    }).catch(err => console.log(err))
   }
-
-  // componentDidUpdate() {
-  //   let newUserartsArray;
-  //     api.getCodekunstDetail(this.props.match.params.codekunstId)
-  //     .then(codekunst => {
-  //       newUserartsArray = codekunst.userarts;
-  //       this.setState({
-  //         userarts: newUserartsArray
-  //       })
-  //     })
-  //     .catch(err => console.log(err));
-  //     // setTimeout(() => {
-  //       // console.log("newUserarts: " + newUserartsArray.length)
-  //     // console.log("this after change: " + this.state.userarts.length)
-  //     // }, 2500)
-  // }
 }
