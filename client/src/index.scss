@@ -4,7 +4,6 @@
 // Definition of variables
 $primary: #32c3ff;
 
-
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -12,13 +11,13 @@ $primary: #32c3ff;
 // @import 'bootstrap/scss/bootstrap';
 // ----------------------------------------
 
-
 // --------------------
 // Style reusable for all components
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: white;
 }
 
 .thumbnail {
@@ -99,3 +98,63 @@ body {
     color: $primary;
   }
 }
+
+// --------------------
+// Style for Codekunt component-------------------------
+// .step1 .step2 .step3 {
+//   border: 1px solid blue;
+// }
+
+.card {
+  border: 10px solid black;
+  background: linear-gradient(transparent 60%, 50%, black),
+    linear-gradient(90deg, transparent 60%, black 50%, black);
+  background-size: 6px 6px;
+  box-shadow: 20px 20px #fff200;
+  // width: 100%;
+  border-radius: 0%;
+  padding: 5rem 3rem 2rem 3rem;
+  margin: 2rem 0 4rem 0;
+}
+
+.card > img {
+  border: 5px solid black;
+  border-radius: 0%;
+  // height: 20em;
+  // width: 20em;
+}
+
+.card {
+  // border-top: 1px solid white;
+}
+
+.Codekunst {
+  background-color: rgb(255, 222, 38);
+}
+.container {
+  background-color: white;
+}
+
+.h6 {
+  color: white;
+}
+
+// .detailLink > p {
+//   color: white;
+//   border: 1px solid red;
+// }
+
+.xBox {
+  font-size: 2.8rem;
+  color: white;
+  // border: 1px solid white;
+  margin: 0;
+  padding: 0;
+  top: -0.9rem;
+  right: 0.5rem;
+  position: absolute;
+}
+
+// #0004ff blau
+// #fff200 gelb
+// #ff00ed pink
