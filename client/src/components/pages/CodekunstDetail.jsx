@@ -62,7 +62,7 @@ export default class CodekunstDetail extends Component {
           alt="codekunstimage"
           className="thumbnail"
         />
-        {/* <pre style={{ textAlign: "left", margin: 20 }}>{this.state.code}</pre> SHOW CODEBLOCK, HIDDEN FOR DEV PURPOSE */}
+        {/* <pre style={{ textAlign: "left", margin: 20 }}>{this.state.code}</pre> SHOW CODEBLOCK, HIDDEN FOR DEV PURPOSEki */}
         <div id="box" style={{ border: "1px solid black" }} />
         <div className="d-flex flex-row">
           {this.state.codekunst.userarts.map((item, i) => (

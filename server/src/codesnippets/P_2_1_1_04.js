@@ -114,7 +114,7 @@ let s = function(p) {
       tileHeight = p.height / tileCount;
     }
 
-    if (p.key == '1') currentShape = shapes[0];}
+    if (p.key == '1') currentShape = shapes[0];
     if (p.key == '2') currentShape = shapes[1];
     if (p.key == '3') currentShape = shapes[2];
     if (p.key == '4') currentShape = shapes[3];
@@ -126,7 +126,7 @@ let s = function(p) {
     if (p.keyCode == p.DOWN_ARROW) shapeSize = max(shapeSize - 5, 5);
     if (p.keyCode == p.LEFT_ARROW) shapeAngle += 5;
     if (p.keyCode == p.RIGHT_ARROW) shapeAngle -= 5;
-
+  
   }
 }
 
