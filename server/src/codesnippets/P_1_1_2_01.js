@@ -38,34 +38,34 @@ let s = function(p) {
 
   p.keyPressed = function () {
     if (p.key === 's' || p.key === 'S') {
-      console.log("Key Pressed!")
-      let dataURL = p.canvas.toDataURL( "image/jpeg" );
+      console.log('Key Pressed!')
+      let dataURL = p.canvas.toDataURL( 'image/jpeg' );
       let filename = Date.now()
 			console.log('TCL: p.keyPressed -> filename', filename)
       let file = dataURLtoFile(dataURL, filename);
 
       let url = '';
-      if (window.location.origin.includes('localhost')) url = "http://localhost:5000/api/uploadPicture/" + projectcode
-      else url = window.location.origin + "/api/uploadPicture/" + projectcode; //variable projectcode comes from scope of the react app
+      if (window.location.origin.includes('localhost')) url = 'http://localhost:5000/api/uploadPicture/' + projectcode
+      else url = window.location.origin + '/api/uploadPicture/' + projectcode; //variable projectcode comes from scope of the react app
 
       let form = new FormData();
-      form.append("file", file);
+      form.append('file', file);
 
       let settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": url,
-        "method": "POST",
-        "headers": {
-          "cache-control": "no-cache",
-          "Postman-Token": "c398ba57-8976-47e9-acc1-ec8e4c121b09"
+        'async': true,
+        'crossDomain': true,
+        'url': url,
+        'method': 'POST',
+        'headers': {
+          'cache-control': 'no-cache',
+          'Postman-Token': 'c398ba57-8976-47e9-acc1-ec8e4c121b09'
         },
-        "processData": false,
-        "contentType": false,
-        "mimeType": "multipart/form-data",
-        "data": form,
-        "xhrFields": {
-          "withCredentials": true
+        'processData': false,
+        'contentType': false,
+        'mimeType': 'multipart/form-data',
+        'data': form,
+        'xhrFields': {
+          'withCredentials': true
         }
       }
 
@@ -95,4 +95,4 @@ let s = function(p) {
   }
 }
 
-let myp5 = new p5(s, document.getElementById("box"))
+let myp5 = new p5(s, document.getElementById('box'))
