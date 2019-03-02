@@ -44,7 +44,7 @@ export default class CodekunstDetail extends Component {
             );
           })
           .catch(err => console.log(err));
-      }, 6000);
+      }, 3000);
     }
   };
 
