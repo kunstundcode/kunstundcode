@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import api from "../../api";
+import SpinnerPage from '../SpinnerPage';
+import CardDetail from '../CardDetail';
 
 export default class CodekunstDetail extends Component {
   constructor(props) {
     super(props);
+    this._isMounted = false;
     this.state = {
       name: "",
       code: "",
@@ -26,6 +29,8 @@ export default class CodekunstDetail extends Component {
       console.log(
         "Please wait, your art is going to be saved and will appear shortly"
       );
+
+      this._isMounted &&
       setTimeout(() => {
         console.log("Timeout called!");
         api
@@ -50,34 +55,21 @@ export default class CodekunstDetail extends Component {
 
   render() {
     if (!this.state.codekunst) {
-      return <div className="CodekunstDetail">Loading...</div>;
+      return <SpinnerPage />;
     }
     return (
-      <div className="CodekunstDetail">
-        <h1>CodekunstDetail</h1>
-        <strong>Projectcode</strong>: {this.state.codekunst.projectcode}
-        <br />
-        <img
-          src={this.state.codekunst.thumbnail}
-          alt="codekunstimage"
-          className="thumbnail"
-        />
-        {/* <pre style={{ textAlign: "left", margin: 20 }}>{this.state.code}</pre> SHOW CODEBLOCK, HIDDEN FOR DEV PURPOSEki */}
-        <div id="box" style={{ border: "1px solid black" }} />
-        <div className="d-flex flex-row">
-          {this.state.codekunst.userarts.map((item, i) => (
-            <div key={i}>
-              <img
-                src={item.pictureUrl}
-                alt="userartimage"
-                className="thumbnail"
-              />
-              <br />
-              <strong>Creator: </strong>
-              <em>{item._user.username}</em>
-              <br />
-            </div>
-          ))}
+      <div className="Codekuenste CodekunstDetail d-flex flew-row justify-content-around">
+        <div className="left">
+          <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>
+          <div className="d-flex flex-row flex-wrap">
+            {this.state.codekunst.userarts.map((item, i) => (
+              <div key={i}><CardDetail c={item} /></div>
+            ))}
+          </div>
+        </div>
+        <div className="right">
+          <h3>How to use this...</h3>
+          <div id="box" style={{ border: "0px solid white" }} />  
         </div>
       </div>
     );
@@ -85,7 +77,10 @@ export default class CodekunstDetail extends Component {
 
   componentWillMount() {
     window.addEventListener("keydown", this.handleKeyboardInput.bind(this));
-    console.log("Component will mount. Eventlistener added!");
+    console.log("***** Component will mount *****")
+    console.log("Eventlistener added!");
+    console.log("Before API-call: OLD this.state.userarts: " + this.state.userarts.length) 
+    // this._isMounted &&
     api
       .getCodekunstDetail(this.props.match.params.codekunstId)
       .then(codekunst => {
@@ -96,17 +91,24 @@ export default class CodekunstDetail extends Component {
           thumbnail: codekunst.thumbnail,
           userarts: codekunst.userarts
         });
+
       })
       .catch(err => console.log(err));
   }
 
   componentDidMount() {
-    console.log("Component did mount. Execute code with eval");
-
+    console.log("***** Component did mount *****")
+    console.log("Execute code with eval");
+    this._isMounted = true;
+    // this._isMounted &&
     api
       .getCodekunstDetail(this.props.match.params.codekunstId)
       .then(codekunst => {
         this.setState({
+          codekunst: codekunst,
+          name: codekunst.name,
+          code: codekunst.code,
+          thumbnail: codekunst.thumbnail,
           userarts: codekunst.userarts
         });
         let executeArtsyCode = function(projectcode) {
@@ -119,17 +121,18 @@ export default class CodekunstDetail extends Component {
   }
 
   componentWillUpdate() {
-    console.log("Will updated called");
+    console.log("***** Component will update *****")
   }
 
   componentDidUpdate() {
-    console.log("Did update called");
+    console.log("***** Component did update *****")
     console.log(
-      "Userarts length when -componentDidUpdate: " + this.state.userarts.length
+      "Did update called. Userarts length when -componentDidUpdate: " + this.state.userarts.length
     );
   }
 
   componentWillUnmount() {
-    console.log("Will unmount called");
+    console.log("***** Component will unmount *****")
+    this._isMounted = false;
   }
 }

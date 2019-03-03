@@ -18,6 +18,16 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err))
 });
 
+router.get('/ofUser/:userId', (req, res, next) => {
+  Userart.find({_user: req.params.userId})
+    .populate('_codekunst', 'projectcode')
+    .then(userarts => {
+			console.log('TCL: userarts', userarts)
+      res.json(userarts);
+    })
+    .catch(err => next(err))
+});
+
 router.get('/:id', (req, res, next) => {
   Userart.findById(req.params.id)
     .populate('_user', 'username') // Just populate the username and the _id (default) of the creator

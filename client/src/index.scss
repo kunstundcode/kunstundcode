@@ -42,26 +42,6 @@ body {
 .App {
   text-align: center;
 
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-  }
-
-  .App-header {
-    background-color: $primary;
-    padding: 20px;
-    color: white;
-
-    a {
-      color: white;
-      padding: 0 5px;
-      text-decoration: unset;
-    }
-
-    a.active {
-      font-weight: bold;
-    }
-  }
 
   .App-title {
     font-size: 1.5em;
@@ -69,16 +49,6 @@ body {
 
   .App-intro {
     font-size: large;
-  }
-
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
   }
 }
 
@@ -106,27 +76,35 @@ body {
 // }
 
 .card {
-  border: 10px solid black;
-  background: linear-gradient(transparent 60%, 50%, black),
-    linear-gradient(90deg, transparent 60%, black 50%, black);
-  background-size: 6px 6px;
-  box-shadow: 20px 20px #fff200;
-  // width: 100%;
-  border-radius: 0%;
-  padding: 5rem 3rem 2rem 3rem;
-  margin: 2rem 0 4rem 0;
+margin: 12px;
 }
 
-.card > img {
-  border: 5px solid black;
-  border-radius: 0%;
-  // height: 20em;
-  // width: 20em;
+.Codekuenste {
+  background-color: #eeff41;
 }
 
-.card {
-  // border-top: 1px solid white;
-}
+// .card {
+//   border: 10px solid black;
+//   background: linear-gradient(transparent 60%, 50%, black),
+//     linear-gradient(90deg, transparent 60%, black 50%, black);
+//   background-size: 6px 6px;
+//   box-shadow: 20px 20px #fff200;
+//   // width: 100%;
+//   border-radius: 0%;
+//   padding: 5rem 3rem 2rem 3rem;
+//   margin: 2rem 0 4rem 0;
+// }
+
+// .card > img {
+//   border: 5px solid black;
+//   border-radius: 0%;
+//   // height: 20em;
+//   // width: 20em;
+// }
+
+// .card {
+//   // border-top: 1px solid white;
+// }
 
 .Codekunst {
   background-color: rgb(255, 222, 38);

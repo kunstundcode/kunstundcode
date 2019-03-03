@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import api from "../../api";
+import Card from '../Card';
 
 class Codekunst extends Component {
   constructor(props) {
@@ -27,38 +28,30 @@ class Codekunst extends Component {
 
   render() {
     return (
-      <div className="Codekuenste">
-        <h2>List of codekuenste</h2>
-        {/* c represents the current codekunst */}
-        <ul>
+      <div className="Codekuenste justify-content-center d-flex flex-row flex-wrap">
+
           {this.state.codekuenste.map(c => (
-            <li key={c._id}>
-              {c.projectcode}{" "}
-              <img
-                src={c.thumbnail}
-                alt="codekunstpicture"
-                className="thumbnail"
-              />
-              <Link to={"/codekuenste/" + c._id}>Detail</Link>{" "}
-              {/* <Link to={"/edit-codekunst/"+c._id}>Edit</Link>{' '} */}
+             <div key={c._id}>
+              <Card c={c} />
               {api.isAdmin() && (
                 <button onClick={() => this.deleteCodekunst(c._id)}>
                   Delete
                 </button>
               )}
-            </li>
+            </div>
           ))}
-        </ul>
+
         {this.state.message && <div className="info">{this.state.message}</div>}
       </div>
     );
   }
 
+
   componentDidMount() {
     api
       .getCodekuenste()
       .then(codekuenste => {
-        console.log(codekuenste);
+        console.log("All Codekuenste: " + codekuenste);
         this.setState({
           codekuenste: codekuenste
         });

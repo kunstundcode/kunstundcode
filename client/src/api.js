@@ -21,7 +21,6 @@ export default {
   service: service,
 
   isLoggedIn() {
-    console.log(localStorage.getItem('user'))
     return localStorage.getItem('user') != null
   },
 
@@ -74,6 +73,13 @@ export default {
   getCodekunstDetail(id) {
     return service
       .get('/codekuenste/'+id)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getUserArts(id) {
+    return service
+      .get('/userarts/ofUser/'+id)
       .then(res => res.data)
       .catch(errHandler)
   },

@@ -1,71 +1,48 @@
 import React, { Component } from 'react'
 import api from '../../api';
+import CardUserDetail from '../CardUserDetail';
 
 export default class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // name: '',
-      // capitals: [],
-      // area: '',
-      // description: '',
-      // message: null
+      userarts: [],
+      userId: this.props.match.params.userId
     }
-    this.handleSubmit = this.handleSubmit.bind(this)
+    
   }
-  handleInputChange(stateKey, event){
-    this.setState({
-      [stateKey]: event.target.value
-    })
-  }
-  handleSubmit(e){
-    e.preventDefault() // To not not submit the form and redirect the user to another page
 
-    api.editCountry(this.props.match.params.countryId, {
-      name: this.state.name,
-      capitals: this.state.capitals,
-      area: this.state.area,
-      description: this.state.description,
-    })
-      .then(data => {
-        console.log("Yeah!!!!!", data)
-        this.setState({
-          message: data.message
-        })
-        // Remove of the message after 3 seconds
-        setTimeout(() => {
-          this.setState({
-            message: null
-          })
-        }, 3000)
-      })
-  }
   render() {
+    let username
+    if (localStorage.getItem('user')) {
+      username = JSON.parse(localStorage.getItem('user')).username;
+    }
+
     return (
-      <div className="Profile">
-        <h1>Edit Profile</h1>
-        <form onSubmit={this.handleSubmit}>
-          Name: <input type="text" value={this.state.name} onChange={(e) => { this.handleInputChange("name", e) }} /> <br />
-          Capitals: <input type="text" value={this.state.capitals} onChange={(e) => { this.handleInputChange("capitals", e) }} /> <br />
-          Area: <input type="number" value={this.state.area} onChange={(e) => { this.handleInputChange("area", e) }} /> <br />
-          Description: <textarea value={this.state.description} cols="30" rows="10" onChange={(e) => { this.handleInputChange("description", e) }} ></textarea> <br />
-          <button>Edit country</button>
-        </form>
-        {this.state.message && <div className="info">
-          {this.state.message}
-        </div>}
+      <div className="Profile d-flex flex-column flex-wrap">
+        <div>
+          {username && <h1>This is your art, {username} </h1>}
+        </div>
+        <div className="Codekuenste d-flex flex-row flex-wrap"> 
+          {this.state.userarts.map((item, i) => (
+            <div key={i}>
+            <CardUserDetail c={item}/>
+            </div>
+          ))}
+          {this.state.message && <div className="info">
+            {this.state.message}
+          </div>}
+        </div>
+        
       </div>
     )
   }
   componentDidMount(){
-    // api.getCountryDetail(this.props.match.params.countryId)
-    //   .then(country => {
-    //     this.setState({
-    //       name: country.name,
-    //       capitals: country.capitals,
-    //       area: country.area,
-    //       description: country.description,
-    //     })
-    //   })
+    api.getUserArts(this.state.userId)
+      .then(userarts => {
+        this.setState({
+          userarts: userarts
+        })
+      })
   }
 }
