@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import api from "../../api";
 import Card from '../Card';
 
+
 class Codekunst extends Component {
   constructor(props) {
     super(props);
@@ -28,7 +29,7 @@ class Codekunst extends Component {
 
   render() {
     return (
-      <div className="Codekuenste justify-content-center d-flex flex-row flex-wrap">
+      <div className="Codekuenste justify-content-center d-flex flex-row flex-wrap align-items-center">
 
           {this.state.codekuenste.map(c => (
              <div key={c._id}>
