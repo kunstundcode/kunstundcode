@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import Codekunst from './pages/Codekunst';
-// import AddCountry from './pages/AddCountry';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -17,7 +16,6 @@ class App extends Component {
     this.state = {
       countries: []
     }
-    // api.loadUser();
   }
 
   handleLogoutClick(e) {
@@ -25,6 +23,12 @@ class App extends Component {
   }
 
   render() {
+    let userId;
+    if (localStorage.getItem('user')) {
+      userId = JSON.parse(localStorage.getItem('user'))._id
+    } 
+
+    console.log ("local storage" + localStorage.getItem('user'));
     return (
       <div className="App">
         <header className="App-header">
@@ -33,12 +37,10 @@ class App extends Component {
           <NavLink to="/" exact>Home</NavLink>
           <NavLink to="/codekunst">Codekunst</NavLink>
 
-          {/* The NavLink "Add country" is displayed only when the user is connected */}
-          {/* {api.isLoggedIn() && <NavLink to="/add-country">Add country</NavLink>} */} 
-
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
           {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
+          {api.isLoggedIn() && <Link to={"/user/"+userId}>MyProfile</Link>}
           {api.isAdmin() && <NavLink to="/admin">Admin</NavLink>}
           
         </header>
@@ -47,7 +49,6 @@ class App extends Component {
           <Route exact path="/codekunst" component={Codekunst} />
           <Route exact path="/codekuenste/:codekunstId" component={CodekunstDetail} />
           <Route exact path="/user/:userId" component={Profile} />
-          {/* <Route exact path="/add-country" component={AddCountry} /> */}
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/admin" component={Admin} />

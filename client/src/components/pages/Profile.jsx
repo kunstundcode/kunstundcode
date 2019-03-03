@@ -5,11 +5,11 @@ export default class Profile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      capitals: [],
-      area: '',
-      description: '',
-      message: null
+      // name: '',
+      // capitals: [],
+      // area: '',
+      // description: '',
+      // message: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -58,14 +58,14 @@ export default class Profile extends Component {
     )
   }
   componentDidMount(){
-    api.getCountryDetail(this.props.match.params.countryId)
-      .then(country => {
-        this.setState({
-          name: country.name,
-          capitals: country.capitals,
-          area: country.area,
-          description: country.description,
-        })
-      })
+    // api.getCountryDetail(this.props.match.params.countryId)
+    //   .then(country => {
+    //     this.setState({
+    //       name: country.name,
+    //       capitals: country.capitals,
+    //       area: country.area,
+    //       description: country.description,
+    //     })
+    //   })
   }
 }
