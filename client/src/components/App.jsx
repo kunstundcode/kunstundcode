@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Codekunst from './pages/Codekunst';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
@@ -23,12 +23,12 @@ class App extends Component {
   }
 
   render() {
-    let userId;
-    if (localStorage.getItem('user')) {
-      userId = JSON.parse(localStorage.getItem('user'))._id;
-    } 
+    // let userId;
+    // if (localStorage.getItem('user')) {
+    //   userId = JSON.parse(localStorage.getItem('user'))._id;
+    // } 
+    // console.log ("local storage" + localStorage.getItem('user'));
 
-    console.log ("local storage" + localStorage.getItem('user'));
     return (
       <div className="App">
         <NavbarPage />
@@ -41,7 +41,7 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/admin" component={Admin} />
-          <Route render={() => <h2>404</h2>} />
+          <Route render={() => <page404/>} />
         </Switch>
       </div>
     );

@@ -10,6 +10,7 @@ const CardDetail = (props) => {
         </MDBView>
         <MDBCardBody>
           <MDBNavLink to={"/user/"+ props.c._user._id}><MDBBtn>{props.c._user.username}</MDBBtn></MDBNavLink>
+          {/* <i class="fas fa-user-circle" /> */}
         </MDBCardBody>
       </MDBCard>
     </MDBCol>

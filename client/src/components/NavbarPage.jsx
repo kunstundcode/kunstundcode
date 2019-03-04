@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import api from '../api';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 
 class NavbarPage extends Component {
