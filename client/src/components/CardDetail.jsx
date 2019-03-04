@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBView } from 'mdbreact';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCol, MDBView, MDBNavLink } from 'mdbreact';
 
 const CardDetail = (props) => {
   return (
@@ -9,7 +9,7 @@ const CardDetail = (props) => {
           <MDBCardImage className="img-fluid" src={props.c.pictureUrl} waves />
         </MDBView>
         <MDBCardBody>
-          <MDBBtn href={"/user/"+ props.c._user._id}>{props.c._user.username}</MDBBtn>
+          <MDBNavLink to={"/user/"+ props.c._user._id}><MDBBtn>{props.c._user.username}</MDBBtn></MDBNavLink>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>

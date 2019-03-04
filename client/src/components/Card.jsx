@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBAnimation, MDBView, MDBCol } from 'mdbreact';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBView, MDBCol, MDBNavLink } from 'mdbreact';
 
 const Card = (props) => {
   return (
@@ -10,11 +10,7 @@ const Card = (props) => {
         </MDBView>
         <MDBCardBody>
           <MDBCardTitle>{props.c.username}</MDBCardTitle>
-          {/* <MDBCardText>
-            Some quick example text to build on the card title and make
-            up the bulk of the card&apos;s content.
-          </MDBCardText> */}
-          <MDBBtn href={"/codekuenste/"+ props.c._id}>Details</MDBBtn>
+          <MDBNavLink to={"/codekuenste/"+ props.c._id}><MDBBtn>Details</MDBBtn></MDBNavLink>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
