@@ -1,6 +1,3 @@
-# kunstundcode
-3rd Project by André Sebastian &amp; Svenja Weiler 
-
 # Welcome to kunstundcode ![](https://img.shields.io/badge/Project-%233-yellow.svg)
 ## 3rd Ironhack Project - Generative Design / Experimental Design
 ### by André Sebastian & Svenja Weiler 
