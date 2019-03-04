@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
-class ModalPage extends Component {
+className ModalPage extends Component {
 state = {
   modal: false
 }
@@ -15,7 +15,7 @@ toggle = () => {
 render() {
   return (
     <MDBContainer>
-      <MDBBtn color="primary" onClick={this.toggle}>How to use this...  <i class="fas fa-question"></i></MDBBtn>
+      <MDBBtn color="primary" onClick={this.toggle}>How to use this...  <i className="fas fa-question"></i></MDBBtn>
       <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
         <MDBModalHeader toggle={this.toggle}>How to use this... </MDBModalHeader>
         <MDBModalBody>

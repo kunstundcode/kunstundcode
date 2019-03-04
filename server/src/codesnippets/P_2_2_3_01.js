@@ -22,7 +22,7 @@ let s = function(p) {
   var freeze = false;
 
   p.setup = function () {
-    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.createCanvas(800, 800);
 
     // init shape
     centerX = p.width / 2;
