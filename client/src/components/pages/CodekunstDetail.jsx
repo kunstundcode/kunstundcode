@@ -13,6 +13,7 @@ export default class CodekunstDetail extends Component {
       code: "",
       thumbnail: "",
       userarts: [],
+      description: '',
       codekunst: null
     };
   }
@@ -37,12 +38,13 @@ export default class CodekunstDetail extends Component {
         api
           .getCodekunstDetail(this.props.match.params.codekunstId)
           .then(codekunst => {
-            this.setState({
+            this.setState({ //FIXME: all keys really needed to be updated?
               codekunst: codekunst,
               name: codekunst.name,
               code: codekunst.code,
               thumbnail: codekunst.thumbnail,
-              userarts: codekunst.userarts
+              userarts: codekunst.userarts,
+              description: codekunst.description
             });
             console.log(
               "S clicked, AFTER Timeout-SetState-Update length in state is " +
@@ -69,7 +71,7 @@ export default class CodekunstDetail extends Component {
           </div>
         </div>
         <div className="right">
-          <ModalPage />
+          <ModalPage codekunst={this.state.codekunst}/>
           <div id="box" style={{ border: "0px solid white" }} />  
         </div>
       </div>
@@ -90,7 +92,8 @@ export default class CodekunstDetail extends Component {
           name: codekunst.name,
           code: codekunst.code,
           thumbnail: codekunst.thumbnail,
-          userarts: codekunst.userarts
+          userarts: codekunst.userarts,
+          description: codekunst.description
         });
 
       })
@@ -110,7 +113,8 @@ export default class CodekunstDetail extends Component {
           name: codekunst.name,
           code: codekunst.code,
           thumbnail: codekunst.thumbnail,
-          userarts: codekunst.userarts
+          userarts: codekunst.userarts,
+          description: codekunst.description
         });
         let executeArtsyCode = function(projectcode) {
           // eslint-disable-next-line
