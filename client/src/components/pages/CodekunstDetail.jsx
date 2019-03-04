@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import api from "../../api";
 import SpinnerPage from '../SpinnerPage';
 import CardDetail from '../CardDetail';
+import ModalPage from '../ModalPage';
 
 export default class CodekunstDetail extends Component {
   constructor(props) {
@@ -68,7 +69,7 @@ export default class CodekunstDetail extends Component {
           </div>
         </div>
         <div className="right">
-          <h3>How to use this...  <i class="fas fa-question"></i></h3>
+          <ModalPage />
           <div id="box" style={{ border: "0px solid white" }} />  
         </div>
       </div>
