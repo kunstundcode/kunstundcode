@@ -7,7 +7,8 @@ export default class Profile extends Component {
     super(props)
     this.state = {
       userarts: [],
-      userId: this.props.match.params.userId
+      userId: this.props.match.params.userId,
+      ownerName: ''
     }
     
   }
@@ -21,7 +22,8 @@ export default class Profile extends Component {
     return (
       <div className="Profile d-flex flex-column flex-wrap">
         <div>
-          {username && <h1>This is your art, {username} </h1>}
+          {(username === this.state.ownerName) && <h1>This is your awesome art, {username} </h1>}
+          {!(username === this.state.ownerName) && <h1>This is the incredible art of {this.state.ownerName} </h1>}
         </div>
         <div className="Codekuenste d-flex flex-row flex-wrap"> 
           {this.state.userarts.map((item, i) => (
@@ -37,12 +39,19 @@ export default class Profile extends Component {
       </div>
     )
   }
-  componentDidMount(){
+  
+  componentWillMount(){
     api.getUserArts(this.state.userId)
-      .then(userarts => {
-        this.setState({
-          userarts: userarts
-        })
+    .then(userarts => {
+      this.setState({
+        userarts: userarts,
+        ownerName: userarts[0]._user.username
       })
+    }).catch(err => console.log(err))
+  }
+  
+
+  componentDidMount(){
+   
   }
 }

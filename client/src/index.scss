@@ -13,11 +13,17 @@ $primary: #32c3ff;
 
 // --------------------
 // Style reusable for all components
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background-color: white;
+  // background: url(./bg2.jpeg) no-repeat center center fixed; 
+  // -webkit-background-size: cover;
+  // -moz-background-size: cover;
+  // -o-background-size: cover;
+  // background-size: cover;
 }
 
 .thumbnail {

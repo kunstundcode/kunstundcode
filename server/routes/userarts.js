@@ -21,6 +21,7 @@ router.get('/', (req, res, next) => {
 router.get('/ofUser/:userId', (req, res, next) => {
   Userart.find({_user: req.params.userId})
     .populate('_codekunst', 'projectcode')
+    .populate('_user', 'username')
     .then(userarts => {
 			console.log('TCL: userarts', userarts)
       res.json(userarts);

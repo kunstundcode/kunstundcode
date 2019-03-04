@@ -9,7 +9,7 @@ const CardDetail = (props) => {
           <MDBCardImage className="img-fluid" src={props.c.pictureUrl} waves />
         </MDBView>
         <MDBCardBody>
-          <MDBBtn href={"/codekuenste/"+ props.c._id}>{props.c._user.username}</MDBBtn>
+          <MDBBtn href={"/user/"+ props.c._user._id}>{props.c._user.username}</MDBBtn>
         </MDBCardBody>
       </MDBCard>
     </MDBCol>
