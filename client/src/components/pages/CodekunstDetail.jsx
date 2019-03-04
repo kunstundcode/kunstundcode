@@ -68,7 +68,7 @@ export default class CodekunstDetail extends Component {
           </div>
         </div>
         <div className="right">
-          <h3>How to use this...</h3>
+          <h3>How to use this...  <i class="fas fa-question"></i></h3>
           <div id="box" style={{ border: "0px solid white" }} />  
         </div>
       </div>
