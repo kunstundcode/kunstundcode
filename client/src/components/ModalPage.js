@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
-className ModalPage extends Component {
+class ModalPage extends Component {
 state = {
   modal: false
 }
