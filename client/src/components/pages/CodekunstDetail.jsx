@@ -14,7 +14,8 @@ export default class CodekunstDetail extends Component {
       thumbnail: "",
       userarts: [],
       description: '',
-      codekunst: null
+      codekunst: null,
+      saving: false
     };
   }
 
@@ -32,6 +33,10 @@ export default class CodekunstDetail extends Component {
         "Please wait, your art is going to be saved and will appear shortly"
       );
 
+      this.setState({
+        saving: true
+      })
+
       this._isMounted &&
       setTimeout(() => {
         console.log("Timeout called!");
@@ -44,7 +49,8 @@ export default class CodekunstDetail extends Component {
               code: codekunst.code,
               thumbnail: codekunst.thumbnail,
               userarts: codekunst.userarts,
-              description: codekunst.description
+              description: codekunst.description,
+              saving: false
             });
             console.log(
               "S clicked, AFTER Timeout-SetState-Update length in state is " +
@@ -61,9 +67,10 @@ export default class CodekunstDetail extends Component {
       return <SpinnerPage />;
     }
     return (
-      <div className="Codekuenste CodekunstDetail d-flex flew-row justify-content-around">
+      <div className="Codekuenste CodekunstDetail d-flex flew-row">
         <div className="left">
-          <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>
+          {!this.state.saving && <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>}
+          {this.state.saving && <h2><SpinnerPage />Well done! Saving your art :)</h2> }
           <div className="d-flex flex-row flex-wrap">
             {this.state.codekunst.userarts.map((item, i) => (
               <div key={i}><CardDetail c={item} /></div>

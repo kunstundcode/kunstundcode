@@ -40,9 +40,10 @@ export default class Profile extends Component {
     )
   }
   
-  componentDidMount(){
+  componentWillMount(){
     api.getUserArts(this.state.userId)
     .then(userarts => {
+      console.log(userarts)
       this.setState({
         userarts: userarts,
         ownerName: userarts[0]._user.username
