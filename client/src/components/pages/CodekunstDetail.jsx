@@ -79,7 +79,7 @@ export default class CodekunstDetail extends Component {
       <div className="Codekuenste CodekunstDetail d-flex flew-row">
         <div className="left col-6">
           {!this.state.saving && <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>}
-          {this.state.saving && <h2><SpinnerPage />Well done! Saving your art :)</h2> }
+          {this.state.saving && <h2><SpinnerPage />  Well done! Saving your art :)</h2> }
           <div className="d-flex flex-row flex-wrap">
             {this.state.codekunst.userarts.map((item, i) => (
               <div key={i}><CardDetail c={item} /></div>
