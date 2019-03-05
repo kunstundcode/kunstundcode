@@ -8,6 +8,7 @@ export default class CodekunstDetail extends Component {
   constructor(props) {
     super(props);
     this._isMounted = false;
+    window.addEventListener("keydown", this.handleKeyboardInput.bind(this));
     this.state = {
       name: "",
       code: "",
@@ -74,44 +75,44 @@ export default class CodekunstDetail extends Component {
           <div className="d-flex flex-row flex-wrap">
             {this.state.codekunst.userarts.map((item, i) => (
               <div key={i}><CardDetail c={item} /></div>
-            ))}
+              ))}
           </div>
         </div>
         <div className="right col-6">
           <ModalPage codekunst={this.state.codekunst}/>
           <div id="box" style={{ border: "0px solid white" }} />  
+              <pre>{this.state.codekunst.code}</pre>
         </div>
       </div>
     );
   }
 
-  componentWillMount() {
-    window.addEventListener("keydown", this.handleKeyboardInput.bind(this));
-    console.log("***** Component will mount *****")
-    console.log("Eventlistener added!");
-    console.log("Before API-call: OLD this.state.userarts: " + this.state.userarts.length) 
-    // this._isMounted &&
-    api
-      .getCodekunstDetail(this.props.match.params.codekunstId)
-      .then(codekunst => {
-        this.setState({
-          codekunst: codekunst,
-          name: codekunst.name,
-          code: codekunst.code,
-          thumbnail: codekunst.thumbnail,
-          userarts: codekunst.userarts,
-          description: codekunst.description
-        });
+  // componentWillMount() {
+    // console.log("***** Component will mount *****")
+    // console.log("Eventlistener added!");
+    // console.log("Before API-call: OLD this.state.userarts: " + this.state.userarts.length) 
+    // // this._isMounted &&
+    // api
+    //   .getCodekunstDetail(this.props.match.params.codekunstId)
+    //   .then(codekunst => {
+    //     this.setState({
+    //       codekunst: codekunst,
+    //       name: codekunst.name,
+    //       code: codekunst.code,
+    //       thumbnail: codekunst.thumbnail,
+    //       userarts: codekunst.userarts,
+    //       description: codekunst.description
+    //     });
 
-      })
-      .catch(err => console.log(err));
-  }
+    //   })
+    //   .catch(err => console.log(err));
+  // }
 
   componentDidMount() {
     console.log("***** Component did mount *****")
     console.log("Execute code with eval");
     this._isMounted = true;
-    // this._isMounted &&
+    this._isMounted &&
     api
       .getCodekunstDetail(this.props.match.params.codekunstId)
       .then(codekunst => {

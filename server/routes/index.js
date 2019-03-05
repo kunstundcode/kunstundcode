@@ -14,6 +14,10 @@ router.get('/admin', isLoggedIn, isAdmin, (req, res, next) => {
   });
 });
 
+router.get('/profile', (req, res, next) => {
+  res.json(req.user)
+});
+
 router.post('/uploadPicture/:projectCode', isLoggedIn,upload.single("file"), (req, res, next) => { //TODO: Protect with isLoggedIn
   let projectCode = req.params.projectCode;
   let receivedFileUrl = req.file.secure_url;

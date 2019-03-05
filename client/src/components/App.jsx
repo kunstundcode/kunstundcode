@@ -16,6 +16,7 @@ class App extends Component {
     this.state = {
       
     }
+    api.refreshIfNotAnymoreLoggedIn()
   }
 
   handleLogoutClick(e) {

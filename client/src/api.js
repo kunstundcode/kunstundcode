@@ -33,6 +33,19 @@ export default {
     }
   },
 
+  refreshIfNotAnymoreLoggedIn() {
+    if (this.isLoggedIn()) {
+      this.getProfile()
+        .then(profile => {
+          if (!profile) {
+            localStorage.removeItem('user')
+            // Go to '/login' by refreshing the page
+            window.location = '/login'
+          }
+        })
+    }
+  },
+
   signup(userInfo) {
     return service
       .post('/signup', userInfo)
@@ -101,6 +114,13 @@ export default {
   editCodekunst(codekunstId, body) {
     return service
       .put('/codekuenste/'+codekunstId, body)
+      .then(res => res.data)
+      .catch(errHandler)
+  },
+
+  getProfile() {
+    return service
+    .get('/profile')
       .then(res => res.data)
       .catch(errHandler)
   },
