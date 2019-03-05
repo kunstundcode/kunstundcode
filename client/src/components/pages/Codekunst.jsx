@@ -28,7 +28,7 @@ class Codekunst extends Component {
 
   render() {
     return (
-      <div className="Codekuenste d-flex flex-row flex-wrap">
+      <div className="Codekuenste d-flex flex-row flex-wrap align-content-start">
 
           {this.state.codekuenste.map(c => (
              <div key={c._id}>

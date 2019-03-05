@@ -68,7 +68,7 @@ export default class CodekunstDetail extends Component {
     }
     return (
       <div className="Codekuenste CodekunstDetail d-flex flew-row">
-        <div className="left">
+        <div className="left col-6">
           {!this.state.saving && <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>}
           {this.state.saving && <h2><SpinnerPage />Well done! Saving your art :)</h2> }
           <div className="d-flex flex-row flex-wrap">
@@ -77,7 +77,7 @@ export default class CodekunstDetail extends Component {
             ))}
           </div>
         </div>
-        <div className="right">
+        <div className="right col-6">
           <ModalPage codekunst={this.state.codekunst}/>
           <div id="box" style={{ border: "0px solid white" }} />  
         </div>
