@@ -89,33 +89,12 @@ export default class CodekunstDetail extends Component {
         <div className="right col-6">
           <ModalPage codekunst={this.state.codekunst}/>
           <div id="box" style={{ border: "0px solid white" }} />  
-              <pre>{this.state.codekunst.code}</pre>
+              {/* <pre>{this.state.codekunst.code}</pre> */}
         </div>
       </div>
     );
   }
-
-  // componentWillMount() {
-    // console.log("***** Component will mount *****")
-    // console.log("Eventlistener added!");
-    // console.log("Before API-call: OLD this.state.userarts: " + this.state.userarts.length) 
-    // // this._isMounted &&
-    // api
-    //   .getCodekunstDetail(this.props.match.params.codekunstId)
-    //   .then(codekunst => {
-    //     this.setState({
-    //       codekunst: codekunst,
-    //       name: codekunst.name,
-    //       code: codekunst.code,
-    //       thumbnail: codekunst.thumbnail,
-    //       userarts: codekunst.userarts,
-    //       description: codekunst.description
-    //     });
-
-    //   })
-    //   .catch(err => console.log(err));
-  // }
-
+  
   componentDidMount() {
     console.log("***** Component did mount *****")
     console.log("Execute code with eval");
