@@ -64,6 +64,14 @@ export default class CodekunstDetail extends Component {
   };
 
   render() {
+    setTimeout(() => {
+      if (!window.location.hash) {
+          window.location = window.location + '#loaded';
+          window.location.reload();
+      }
+    }, 1)
+
+    
     if (!this.state.codekunst) {
       return <SpinnerPage />;
     }
