@@ -19,7 +19,7 @@ render() {
       <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
         <MDBModalHeader toggle={this.toggle}>How to use this... </MDBModalHeader>
         <MDBModalBody>
-          <span>{this.props.codekunst.description}</span>
+          <span><p>{this.props.codekunst.description}</p></span>
         </MDBModalBody>
         <MDBModalFooter>
           <MDBBtn color="secondary" onClick={this.toggle}>Great, thank you for the info</MDBBtn>
