@@ -36,9 +36,7 @@ render() {
           <MDBNavItem>
             <MDBNavLink to="/codekunst">Codekunst</MDBNavLink>
           </MDBNavItem>
-          <MDBNavItem>
-            <MDBNavLink to={"/user/"+userId}>MyArt</MDBNavLink>
-          </MDBNavItem>
+          {api.isLoggedIn() && <MDBNavItem><MDBNavLink to={"/user/"+userId}>MyArt</MDBNavLink></MDBNavItem>}
         </MDBNavbarNav>
         <MDBNavbarNav right>
         {username && <MDBNavItem><MDBNavLink to={"/user/"+userId}>{username}</MDBNavLink></MDBNavItem>}
