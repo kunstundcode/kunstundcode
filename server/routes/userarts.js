@@ -40,7 +40,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 // Route to add a userart (protected)
-router.post('/:codekunstid/', isLoggedIn, isAdmin, (req, res, next) => {
+router.post('/:codekunstid/', isLoggedIn, (req, res, next) => {
   let { pictureUrl } = req.body;
 	console.log('TCL: pictureUrl', pictureUrl)
   // let _user = req.user._id // req.user contains information about the connected user //TODO: Add user again, when frontend is set up
