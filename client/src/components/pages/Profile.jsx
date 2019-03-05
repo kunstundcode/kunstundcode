@@ -40,7 +40,7 @@ export default class Profile extends Component {
     )
   }
   
-  componentWillMount(){
+  componentDidMount(){
     api.getUserArts(this.state.userId)
     .then(userarts => {
       this.setState({
@@ -50,8 +50,4 @@ export default class Profile extends Component {
     }).catch(err => console.log(err))
   }
   
-
-  componentDidMount(){
-   
-  }
 }
