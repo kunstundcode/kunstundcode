@@ -7,7 +7,6 @@ import ModalPage from '../ModalPage';
 export default class CodekunstDetail extends Component {
   constructor(props) {
     super(props);
-    this._isMounted = false;
     window.addEventListener("keydown", this.handleKeyboardInput.bind(this));
     this.state = {
       name: "",
@@ -23,28 +22,19 @@ export default class CodekunstDetail extends Component {
   handleKeyboardInput = e => {
     const code = e.keyCode ? e.keyCode : e.which;
 
-    if (code === 83) {
-      //s key
-      console.log("S clicked on react, timeout and setstate!");
-      console.log(
-        "S clicked, before Timeout-SetState-Update length in state is " +
-          this.state.userarts.length
-      );
-      console.log(
-        "Please wait, your art is going to be saved and will appear shortly"
-      );
+    if (code === 83) { //s key
+      console.log("Please wait, your art is going to be saved and will appear shortly");
 
       this.setState({
         saving: true
       })
 
-      this._isMounted &&
       setTimeout(() => {
         console.log("Timeout called!");
         api
           .getCodekunstDetail(this.props.match.params.codekunstId)
           .then(codekunst => {
-            this.setState({ //FIXME: all keys really needed to be updated?
+            this.setState({
               codekunst: codekunst,
               name: codekunst.name,
               code: codekunst.code,
@@ -53,10 +43,6 @@ export default class CodekunstDetail extends Component {
               description: codekunst.description,
               saving: false
             });
-            console.log(
-              "S clicked, AFTER Timeout-SetState-Update length in state is " +
-                this.state.userarts.length
-            );
           })
           .catch(err => console.log(err));
       }, 3000);
@@ -64,7 +50,7 @@ export default class CodekunstDetail extends Component {
   };
 
   render() {
-    setTimeout(() => {
+    setTimeout(() => {  // quick timeout to force refresh. Without it the p5canvas does not hava full functionality
       if (!window.location.hash) {
           window.location = window.location + '#loaded';
           window.location.reload();
@@ -72,9 +58,8 @@ export default class CodekunstDetail extends Component {
     }, 1)
 
     
-    if (!this.state.codekunst) {
-      return <SpinnerPage />;
-    }
+    if (!this.state.codekunst) return <SpinnerPage />;
+
     return (
       <div className="Codekuenste CodekunstDetail d-flex flew-row">
         <div className="left col-6">
@@ -89,7 +74,7 @@ export default class CodekunstDetail extends Component {
         <div className="right col-6">
           <ModalPage codekunst={this.state.codekunst}/>
           <div id="box" style={{ border: "0px solid white" }} />  
-              {/* <pre>{this.state.codekunst.code}</pre> */}
+              {/* <pre>{this.state.codekunst.code}</pre> uncomment to show used code on page */}
         </div>
       </div>
     );
@@ -97,9 +82,6 @@ export default class CodekunstDetail extends Component {
   
   componentDidMount() {
     console.log("***** Component did mount *****")
-    console.log("Execute code with eval");
-    this._isMounted = true;
-    this._isMounted &&
     api
       .getCodekunstDetail(this.props.match.params.codekunstId)
       .then(codekunst => {
@@ -111,6 +93,12 @@ export default class CodekunstDetail extends Component {
           userarts: codekunst.userarts,
           description: codekunst.description
         });
+            // DISCLAIMER: We know that 'eval' can be dangerous, but after a bunch of days trying to avoid it, 
+            // we figured out, that this seems to be the only way to execute p5 based code inside 
+            // a react app with full functionality. Also, the user is not able to input own code, 
+            // just admins. In real production, we would even not implement this option for admins,
+            // because the admin page could potentioally be hacked. In this case we did implement 
+            // to add and test new p5 code quickly, without seeding the database. 
         let executeArtsyCode = function(projectcode) {
           // eslint-disable-next-line
           eval(codekunst.code);
@@ -120,10 +108,6 @@ export default class CodekunstDetail extends Component {
       .catch(err => console.log(err));
   }
 
-  componentWillUpdate() {
-    console.log("***** Component will update *****")
-  }
-
   componentDidUpdate() {
     console.log("***** Component did update *****")
     console.log(
@@ -131,8 +115,4 @@ export default class CodekunstDetail extends Component {
     );
   }
 
-  componentWillUnmount() {
-    console.log("***** Component will unmount *****")
-    this._isMounted = false;
-  }
 }
