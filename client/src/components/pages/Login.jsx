@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl } from "react-bootstrap";
 import api from '../../api';
-import "./Login.css";
+import "./LoginSignup.css";
 
 export default class Login extends Component {
   constructor(props) {
@@ -36,6 +36,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Login">
+        <h1>Login and play around!</h1>
         <form onSubmit={(e) => this.handleClick(e)}>
           <FormGroup controlId="username" bsSize="large">
             Username

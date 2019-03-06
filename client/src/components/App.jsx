@@ -37,7 +37,7 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/admin" component={Admin} />
-          <Route render={() => <page404/>} />
+          <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>
     );
