@@ -10,8 +10,5 @@
   },
   "engines": {
     "node": "8.9.4"
-  },
-  "dependencies": {
-    "reactstrap": "^7.1.0"
   }
 }

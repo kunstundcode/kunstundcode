@@ -51,7 +51,6 @@ class Codekunst extends Component {
     api
       .getCodekuenste()
       .then(codekuenste => {
-        console.log("All Codekuenste: " + codekuenste);
         this.setState({
           codekuenste: codekuenste
         });

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import api from "../../api";
 import SpinnerPage from '../SpinnerPage';
 import CardDetail from '../CardDetail';
-import ModalPage from '../ModalPage';
+import ModalPage from '../ModalPage.jsx';
 
 export default class CodekunstDetail extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ export default class CodekunstDetail extends Component {
   handleKeyboardInput = e => {
     const code = e.keyCode ? e.keyCode : e.which;
 
-    if (localStorage.getItem('user') && code === 83) { //s key
+    if (api.isLoggedIn() && code === 83) { //s key
       console.log("Please wait, your art is going to be saved and will appear shortly");
 
       this.setState({
@@ -49,23 +49,15 @@ export default class CodekunstDetail extends Component {
     }
   };
 
-  render() {
-    setTimeout(() => {  // quick timeout to force refresh. Without it the p5canvas does not hava full functionality
-      if (!window.location.hash) {
-          window.location = window.location + '#loaded';
-          window.location.reload();
-      }
-    }, 1)
-
-    
+  render() {    
     if (!this.state.codekunst) return <SpinnerPage />;
 
     return (
       <div className="Codekuenste CodekunstDetail d-flex flew-row">
         <div className="left col-6">
-          {localStorage.getItem('user') && !this.state.saving && <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>}
-          {!localStorage.getItem('user') && <h2>Please login first. Otherwise you will not be able to save your art.</h2>}
-          {localStorage.getItem('user') && this.state.saving && <h2><SpinnerPage />  Well done! Saving your art :)</h2> }
+          {api.isLoggedIn() && !this.state.saving && <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>}
+          {!api.isLoggedIn() && <h2>Please login first. Otherwise you will not be able to save your art.</h2>}
+          {api.isLoggedIn() && this.state.saving && <h2><SpinnerPage />  Well done! Saving your art :)</h2> }
           <div className="d-flex flex-row flex-wrap">
             {this.state.codekunst.userarts.map((item, i) => (
               <div key={i}><CardDetail c={item} /></div>
@@ -83,6 +75,12 @@ export default class CodekunstDetail extends Component {
   
   componentDidMount() {
     console.log("***** Component did mount *****")
+    
+    if (!window.location.hash) {
+      window.location = window.location + '#loaded';
+      window.location.reload();
+    }
+
     api
       .getCodekunstDetail(this.props.match.params.codekunstId)
       .then(codekunst => {
@@ -108,12 +106,4 @@ export default class CodekunstDetail extends Component {
       })
       .catch(err => console.log(err));
   }
-
-  componentDidUpdate() {
-    console.log("***** Component did update *****")
-    console.log(
-      "Did update called. Userarts length when -componentDidUpdate: " + this.state.userarts.length
-    );
-  }
-
 }

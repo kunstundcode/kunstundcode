@@ -4,7 +4,7 @@ import Codekunst from './pages/Codekunst';
 import Admin from './pages/Admin';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import NavbarPage from './NavbarPage';
+import Navbar from './Navbar';
 import JumbotronPage from './JumbotronPage';
 import ErrorPage404 from './pages/ErrorPage404';
 import CodekunstDetail from './pages/CodekunstDetail';
@@ -28,7 +28,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <NavbarPage />
+        <Navbar />
         <JumbotronPage />
         <Switch>
           <Route exact path="/" component={Codekunst} />

@@ -5,7 +5,7 @@ import api from '../api';
 import { Link, NavLink } from 'react-router-dom';
 
 
-class NavbarPage extends Component {
+class Navbar extends Component {
 state = {
   isOpen: false
 };
@@ -28,7 +28,9 @@ render() {
   return (
     <MDBNavbar color="lime accent-2" light expand="md">
       <MDBNavbarBrand>
+      <MDBNavLink to="/">
         <strong className="black-text">kunstundcode</strong>
+      </MDBNavLink>
       </MDBNavbarBrand>
       <MDBNavbarToggler onClick={this.toggleCollapse} />
       <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -60,4 +62,4 @@ render() {
   }
 }
 
-export default NavbarPage;
+export default Navbar;
