@@ -22,7 +22,7 @@ export default class CodekunstDetail extends Component {
   handleKeyboardInput = e => {
     const code = e.keyCode ? e.keyCode : e.which;
 
-    if (code === 83) { //s key
+    if (localStorage.getItem('user') && code === 83) { //s key
       console.log("Please wait, your art is going to be saved and will appear shortly");
 
       this.setState({
