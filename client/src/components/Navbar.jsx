@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
 MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
 import api from '../api';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 class Navbar extends Component {
@@ -49,9 +49,9 @@ render() {
                 <MDBIcon icon="user" />
               </MDBDropdownToggle>
               <MDBDropdownMenu className="dropdown-default" right>
-              {!api.isLoggedIn() && <MDBDropdownItem><NavLink to="/signup">Signup</NavLink></MDBDropdownItem>}
-              {!api.isLoggedIn() && <MDBDropdownItem><NavLink to="/login">Login</NavLink></MDBDropdownItem>  }
-              {api.isLoggedIn() && <MDBDropdownItem><Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link></MDBDropdownItem>}
+              {!api.isLoggedIn() && <MDBNavLink to="/signup"><MDBDropdownItem>Signup</MDBDropdownItem></MDBNavLink>}
+              {!api.isLoggedIn() && <MDBNavLink to="/login"><MDBDropdownItem>Login</MDBDropdownItem></MDBNavLink>  }
+              {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}><MDBDropdownItem>Logout</MDBDropdownItem></Link>}
               </MDBDropdownMenu>
             </MDBDropdown>
           </MDBNavItem>
