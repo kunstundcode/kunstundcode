@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import NavbarPage from './NavbarPage';
 import JumbotronPage from './JumbotronPage';
+import ErrorPage404 from './pages/ErrorPage404';
 import CodekunstDetail from './pages/CodekunstDetail';
 import Profile from './pages/Profile';
 import api from '../api';
@@ -37,7 +38,8 @@ class App extends Component {
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/admin" component={Admin} />
-          <Route render={() => <h2>404</h2>} />
+          {/* <Route render={() => <h2>404</h2>} /> */}
+          <Route component = {ErrorPage404} />
         </Switch>
       </div>
     );
