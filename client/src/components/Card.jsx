@@ -6,7 +6,7 @@ const Card = (props) => {
     <MDBCol>
       <MDBCard style={{ width: "12rem" }}>
         <MDBView hover zoom>
-         <MDBCardImage className="img-fluid" src={props.c.thumbnail} waves />
+        <MDBNavLink to={"/codekuenste/"+ props.c._id}><MDBCardImage className="img-fluid" src={props.c.thumbnail} waves /></MDBNavLink>
         </MDBView>
         <MDBCardBody>
           <MDBCardTitle>{props.c.username}</MDBCardTitle>
