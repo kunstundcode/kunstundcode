@@ -24,11 +24,6 @@ class App extends Component {
   }
 
   render() {
-    // let userId;
-    // if (localStorage.getItem('user')) {
-    //   userId = JSON.parse(localStorage.getItem('user'))._id;
-    // } 
-    // console.log ("local storage" + localStorage.getItem('user'));
 
     return (
       <div className="App">
