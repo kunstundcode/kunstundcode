@@ -63,8 +63,9 @@ export default class CodekunstDetail extends Component {
     return (
       <div className="Codekuenste CodekunstDetail d-flex flew-row">
         <div className="left col-6">
-          {!this.state.saving && <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>}
-          {this.state.saving && <h2><SpinnerPage />  Well done! Saving your art :)</h2> }
+          {localStorage.getItem('user') && !this.state.saving && <h3><strong>Projectcode</strong>: {this.state.codekunst.projectcode}</h3>}
+          {!localStorage.getItem('user') && <h2>Please login first. Otherwise you will not be able to save your art.</h2>}
+          {localStorage.getItem('user') && this.state.saving && <h2><SpinnerPage />  Well done! Saving your art :)</h2> }
           <div className="d-flex flex-row flex-wrap">
             {this.state.codekunst.userarts.map((item, i) => (
               <div key={i}><CardDetail c={item} /></div>
@@ -97,7 +98,7 @@ export default class CodekunstDetail extends Component {
             // we figured out, that this seems to be the only way to execute p5 based code inside 
             // a react app with full functionality. Also, the user is not able to input own code, 
             // just admins. In real production, we would even not implement this option for admins,
-            // because the admin page could potentioally be hacked. In this case we did implement 
+            // because the admin page could potentioally be hacked. In this case we did implement it
             // to add and test new p5 code quickly, without seeding the database. 
         let executeArtsyCode = function(projectcode) {
           // eslint-disable-next-line

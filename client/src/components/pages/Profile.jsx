@@ -20,7 +20,7 @@ export default class Profile extends Component {
     }
 
     return (
-      <div className="Profile d-flex flex-column flex-wrap">
+      <div className="Codekuenste Profile d-flex flex-column flex-wrap">
         <div>
           {(username === this.state.ownerName) && <h1>This is your awesome art, {username} </h1>}
           {!(username === this.state.ownerName) && <h1>This is the incredible art of {this.state.ownerName} </h1>}
