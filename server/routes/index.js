@@ -18,7 +18,7 @@ router.get('/profile', (req, res, next) => {
   res.json(req.user)
 });
 
-router.post('/uploadPicture/:projectCode', isLoggedIn,upload.single("file"), (req, res, next) => { //TODO: Protect with isLoggedIn
+router.post('/uploadPicture/:projectCode', isLoggedIn,upload.single("file"), (req, res, next) => {
   let projectCode = req.params.projectCode;
   let receivedFileUrl = req.file.secure_url;
   Codekunst.find({ "projectcode" : projectCode})

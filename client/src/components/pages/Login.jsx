@@ -36,7 +36,7 @@ export default class Login extends Component {
   render() {
     return (
       <div className="Login">
-        <h1>Login and play around!</h1>
+        <h1>Log in and play around!</h1>
         <form onSubmit={(e) => this.handleClick(e)}>
           <FormGroup controlId="username" bsSize="large">
             Username

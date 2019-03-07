@@ -3,7 +3,7 @@ function isLoggedIn(req, res, next) {
   else next({ status: 403, message: 'Unauthorized' })
 }
 
-function isAdmin (req, res, next) {       //TODO: Check, if this works
+function isAdmin (req, res, next) {     
   if (req.user.isAdmin) next()
   else next({ status: 403, message: 'Unauthorized. No Admin' })
 }
