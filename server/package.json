@@ -8,28 +8,28 @@
     "debug": "DEBUG=server:* nodemon ./bin/www"
   },
   "dependencies": {
-    "bcrypt": "^3.0.4",
-    "body-parser": "^1.18.3",
-    "bootstrap": "^4.3.1",
-    "cloudinary": "^1.13.2",
-    "connect-mongo": "^2.0.3",
-    "cookie-parser": "^1.4.4",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.0",
+    "cloudinary": "^1.21.0",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "express-session": "^1.15.6",
-    "mdbreact": "^4.11.0",
-    "mongoose": "^5.4.15",
-    "morgan": "^1.9.1",
-    "multer": "^1.4.1",
-    "multer-storage-cloudinary": "^2.2.1",
-    "nocache": "^2.0.0",
-    "passport": "^0.4.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mdbreact": "^4.27.0",
+    "mongoose": "^5.9.18",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "multer-storage-cloudinary": "^4.0.0",
+    "nocache": "^2.1.0",
+    "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "reactstrap": "^7.1.0",
+    "reactstrap": "^8.4.1",
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "nodemon": "^2.0.4"
   }
 }
