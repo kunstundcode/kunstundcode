@@ -1,4 +1,6 @@
 # Welcome to kunstundcode ![](https://img.shields.io/badge/Project-%233-yellow.svg)
+A fullstack react web project that combines experimental design with generative design. 
+
 ## 3rd Ironhack Project - Generative Design / Experimental Design
 ### by André Sebastian & Svenja Weiler 
 
